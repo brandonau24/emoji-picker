@@ -5,10 +5,17 @@
   "author": "Brandon Au",
   "license": "GPL-3.0-or-later",
   "repository": "git@github.com:brandonau24/emoji-picker.git",
+  "scripts": {
+    "build:prod": "webpack --mode production",
+    "build:dev": "webpack --mode development",
+    "dev": "webpack-dev-server --hot --progress"
+  },
   "devDependencies": {
+    "html-webpack-plugin": "^4.3.0",
     "jest": "^26.4.0",
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "prop-types": "^15.7.2",
