@@ -21,6 +21,10 @@ module.exports = {
 		'comma-dangle': 'off',
 		indent: ['error', 'tab'],
 		'linebreak-style': 'off',
-		'no-tabs': 'off'
+		'no-tabs': 'off',
+		'react/jsx-indent': ['error', 'tab']
+	},
+	settings: {
+		'import/resolver': 'webpack'
 	}
 };
