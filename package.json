@@ -9,9 +9,14 @@
     "build:prod": "webpack --mode production",
     "build:dev": "webpack --mode development",
     "dev": "webpack-dev-server --hot --progress",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "jest --config ./config/jest.config.js --ci",
+    "test:watch": "yarn test--watch",
+    "test:coverage": "yarn test --collectCoverage"
   },
   "devDependencies": {
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.3",
     "eslint": "^7.7.0",
     "eslint-plugin-react": "^7.20.6",
     "html-webpack-plugin": "^4.3.0",
