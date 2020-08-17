@@ -1,0 +1,9 @@
+{
+	"eslint.packageManager": "yarn",
+	"eslint.probe": [
+		"javascript",
+		"javascriptreact",
+		"html",
+		"markdown"
+	]
+}
