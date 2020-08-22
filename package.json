@@ -9,9 +9,9 @@
     "build:prod": "webpack --mode production",
     "build:dev": "webpack --mode development",
     "dev": "webpack-dev-server --hot --progress",
-    "lint": "eslint --config ./config/.eslintrc.js --ext .jsx,.js src/",
-    "test": "jest --config ./config/jest.config.js --ci",
-    "test:watch": "yarn test--watch",
+    "lint": "eslint --config ./.eslintrc.js --ext .jsx,.js src/",
+    "test": "jest --config ./jest.config.js --ci",
+    "test:watch": "yarn test --watch",
     "test:coverage": "yarn test --collectCoverage"
   },
   "devDependencies": {
