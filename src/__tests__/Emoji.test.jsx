@@ -17,4 +17,8 @@ describe('Emoji', () => {
 	it('has alt. text set to the name of the emoji', () => {
 		expect(subject.find('.emoji').prop('alt')).toBe('grinning face');
 	});
+
+	it('has title prop set to the name of the emoji', () => {
+		expect(subject.find('.emoji').prop('title')).toBe('grinning face');
+	});
 });
