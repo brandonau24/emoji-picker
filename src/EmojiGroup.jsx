@@ -6,8 +6,8 @@ const EmojiGroup = ({ groupName, group }) => (
 	<div className="emoji-group">
 		<h4>{groupName}</h4>
 		{
-			Object.entries(group).map(([subgroup, emojis]) => emojis.map(
-				(emoji) => <Emoji subgroup={subgroup} name={emoji.name} codepoints={emoji.codepoints} />
+			Object.values(group).map((emojis) => emojis.map(
+				(emoji) => <Emoji name={emoji.name} codepoints={emoji.codepoints} />
 			))
 		}
 	</div>
