@@ -11,6 +11,7 @@ describe('Emoji', () => {
 
 	it('has value set to codepoints', () => {
 		expect(subject.find('.emoji').text()).toBe('codepoints');
+		expect(subject.find('.emoji').prop('value')).toBe('codepoints');
 	});
 
 	it('has alt. text set to the name of the emoji', () => {
