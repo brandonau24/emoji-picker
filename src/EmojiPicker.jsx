@@ -20,8 +20,10 @@ const EmojiPicker = ({ data }) => {
 };
 
 EmojiPicker.propTypes = {
-	// eslint-disable-next-line react/forbid-prop-types
-	data: PropTypes.object.isRequired
+	data: PropTypes.objectOf(PropTypes.oneOfType([
+		PropTypes.object,
+		PropTypes.string
+	])).isRequired
 };
 
 export default EmojiPicker;
