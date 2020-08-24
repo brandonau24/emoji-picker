@@ -10,7 +10,7 @@ const transformCodepoints = (codepoints) => {
 const Emoji = ({ codepoints, name }) => {
 	const transformedCodepoints = transformCodepoints(codepoints);
 
-	return <div className="emoji" title={name} alt={name} value={transformedCodepoints}>{transformedCodepoints}</div>;
+	return <span className="emoji" title={name} alt={name} value={transformedCodepoints}>{transformedCodepoints}</span>;
 };
 
 Emoji.propTypes = {
