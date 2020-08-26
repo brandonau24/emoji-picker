@@ -9,6 +9,7 @@ module.exports = {
 	moduleNameMapper: {
 		EmojiPicker$: '<rootDir>/src/EmojiPicker.jsx',
 		EmojiGroup$: '<rootDir>/src/EmojiGroup.jsx',
-		Emoji$: '<rootDir>/src/Emoji.jsx'
+		Emoji$: '<rootDir>/src/Emoji.jsx',
+		"\\.s?css$": 'identity-obj-proxy'
 	}
 };
