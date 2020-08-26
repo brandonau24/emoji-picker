@@ -1,0 +1,14 @@
+$max-height: 4rem;
+$max-width: 4rem;
+
+.emoji {
+	display: inline-block;
+	height: $max-height;
+	width: $max-width;
+	margin: 1rem 1.5rem;
+	
+	&-img {
+		max-height: $max-height;
+		max-width: $max-width;
+	}
+}

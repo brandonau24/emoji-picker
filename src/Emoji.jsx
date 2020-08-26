@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './Emoji.scss';
+
 const transformCodepoints = (codepoints) => {
 	const transformedCodepoints = codepoints.split(' ').map((codepoint) => `0x${codepoint}`);
 
@@ -10,7 +12,7 @@ const transformCodepoints = (codepoints) => {
 const Emoji = ({ codepoints, name }) => {
 	const transformedCodepoints = transformCodepoints(codepoints);
 
-	return <span className="emoji" title={name} alt={name} value={transformedCodepoints}>{transformedCodepoints}</span>;
+	return <div className="emoji" title={name} alt={name} value={transformedCodepoints}>{transformedCodepoints}</div>;
 };
 
 Emoji.propTypes = {
