@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Emoji from 'Emoji';
 
+import './EmojiGroup.scss';
+
 const EmojiGroup = ({ groupName, group }) => (
 	<div className="emoji-group">
 		<h4>{groupName}</h4>
