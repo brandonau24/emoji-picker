@@ -2,22 +2,37 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import EmojiGroup from 'EmojiGroup';
 
-const EmojiPicker = ({ data }) => {
-	const groups = [];
+class EmojiPicker extends React.Component {
+	static copyEmoji() {
+		console.log('copyEmoji');
+	}
 
-	Object.entries(data).forEach(([key, value]) => {
-		if (key !== 'version') {
-			groups.push(<EmojiGroup key={key} groupName={key} group={value} />);
-		}
-	});
+	componentDidMount() {
+		document.addEventListener('click', EmojiPicker.copyEmoji);
+	}
 
-	return (
-		<>
-			{groups}
-			<div id="footer">{`Built with Unicode Emoji v${data.version}`}</div>
-		</>
-	);
-};
+	componentWillUnmount() {
+		document.removeEventListener('click', EmojiPicker.copyEmoji);
+	}
+
+	render() {
+		const { data } = this.props;
+		const groups = [];
+
+		Object.entries(data).forEach(([key, value]) => {
+			if (key !== 'version') {
+				groups.push(<EmojiGroup key={key} groupName={key} group={value} />);
+			}
+		});
+
+		return (
+			<>
+				{groups}
+				<div id="footer">{`Built with Unicode Emoji v${data.version}`}</div>
+			</>
+		);
+	}
+}
 
 EmojiPicker.propTypes = {
 	data: PropTypes.objectOf(PropTypes.oneOfType([
