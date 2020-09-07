@@ -15,7 +15,8 @@ $width: 3rem;
 
 	&-img {
 		max-height: $height;
-		max-height: $width;
+		max-width: $width;
+		vertical-align: middle;
 	}
 
 	&:hover {
