@@ -21,11 +21,12 @@ describe('EmojiGroup', () => {
 			}
 		]
 	};
+	const onClick = jest.fn();
 
 	let subject;
 
 	beforeEach(() => {
-		subject = shallow(<EmojiGroup groupName={groupName} group={group} />);
+		subject = shallow(<EmojiGroup groupName={groupName} group={group} onClick={onClick} />);
 	});
 
 	it('renders header with group name', () => {
