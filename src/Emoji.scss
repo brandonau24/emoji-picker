@@ -1,14 +1,21 @@
-$max-height: 3rem;
-$max-width: 3rem;
+@mixin remove-button-styles() {
+	border: none;
+	background-color: transparent;
+}
 
 .emoji {
-	display: inline-block;
-	height: $max-height;
-	width: $max-width;
+	@include remove-button-styles();
+	font-size: 3rem;
 	margin: 1rem 1.5rem;
-	
-	&-img {
-		max-height: $max-height;
-		max-width: $max-width;
+	padding: 0;
+
+	&:hover {
+		cursor: pointer;
+		position: relative;
+		box-shadow: 0 0 0.3125rem 0 #000000;
+	}
+
+	&:active {
+		transform: translateY(0.2rem);
 	}
 }
