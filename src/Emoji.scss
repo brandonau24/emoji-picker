@@ -1,3 +1,6 @@
+$height: 3rem;
+$width: 3rem;
+
 @mixin remove-button-styles() {
 	border: none;
 	background-color: transparent;
@@ -5,14 +8,20 @@
 
 .emoji {
 	@include remove-button-styles();
-	font-size: 3rem;
-	margin: 1rem 1.5rem;
+	height: $height + .75rem;
+	width: $width + .75rem;
+	margin: 1rem 1rem;
 	padding: 0;
+
+	&-img {
+		max-height: $height;
+		max-height: $width;
+	}
 
 	&:hover {
 		cursor: pointer;
 		position: relative;
-		box-shadow: 0 0 0.3125rem 0 #000000;
+		box-shadow: 0 0 0.3125rem 0.0625rem #000000;
 	}
 
 	&:active {
