@@ -2,12 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import EmojiGroup from 'EmojiGroup';
 
+const copyEmoji = (e) => console.log(e);
+
 const EmojiPicker = ({ data }) => {
 	const groups = [];
 
 	Object.entries(data).forEach(([key, value]) => {
 		if (key !== 'version') {
-			groups.push(<EmojiGroup key={key} groupName={key} group={value} />);
+			groups.push(<EmojiGroup key={key} groupName={key} group={value} onClick={copyEmoji} />);
 		}
 	});
 

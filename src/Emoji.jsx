@@ -9,15 +9,16 @@ const transformCodepoints = (codepoints) => {
 	return String.fromCodePoint(...transformedCodepoints);
 };
 
-const Emoji = ({ codepoints, name }) => {
+const Emoji = ({ codepoints, name, onClick }) => {
 	const transformedCodepoints = transformCodepoints(codepoints);
 
-	return <div className="emoji" title={name} alt={name} value={transformedCodepoints}>{transformedCodepoints}</div>;
+	return <button type="button" className="emoji" title={name} alt={name} value={transformedCodepoints} onClick={onClick}>{transformedCodepoints}</button>;
 };
 
 Emoji.propTypes = {
 	codepoints: PropTypes.string.isRequired,
-	name: PropTypes.string.isRequired
+	name: PropTypes.string.isRequired,
+	onClick: PropTypes.func.isRequired
 };
 
 export default Emoji;
