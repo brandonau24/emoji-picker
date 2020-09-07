@@ -7,9 +7,9 @@ module.exports = {
 	rootDir: path.resolve(process.cwd()),
 	moduleFileExtensions: ['js', 'jsx'],
 	moduleNameMapper: {
-		EmojiPicker$: '<rootDir>/src/EmojiPicker.jsx',
-		EmojiGroup$: '<rootDir>/src/EmojiGroup.jsx',
-		Emoji$: '<rootDir>/src/Emoji.jsx',
+		EmojiPicker$: '<rootDir>/src/EmojiPicker/EmojiPicker.jsx',
+		EmojiGroup$: '<rootDir>/src/EmojiGroup/EmojiGroup.jsx',
+		Emoji$: '<rootDir>/src/Emoji/Emoji.jsx',
 		"\\.s?css$": 'identity-obj-proxy'
 	}
 };

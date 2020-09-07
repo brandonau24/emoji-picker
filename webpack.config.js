@@ -39,9 +39,9 @@ module.exports = {
 	},
 	resolve: {
 		alias: {
-			EmojiPicker: path.resolve(srcPath, 'EmojiPicker.jsx'),
-			EmojiGroup: path.resolve(srcPath, 'EmojiGroup.jsx'),
-			Emoji: path.resolve(srcPath, 'Emoji.jsx')
+			EmojiPicker: path.resolve(srcPath, 'EmojiPicker/EmojiPicker.jsx'),
+			EmojiGroup: path.resolve(srcPath, 'EmojiGroup/EmojiGroup.jsx'),
+			Emoji: path.resolve(srcPath, 'Emoji/Emoji.jsx')
 		},
 		extensions: ['.js', '.jsx']
 	},
