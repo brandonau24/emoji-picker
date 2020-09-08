@@ -2,7 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import EmojiGroup from 'EmojiGroup';
 
-const copyEmoji = (e) => console.log(e);
+const copyEmoji = (e) => {
+	const fakeTextarea = document.createElement('textarea');
+	document.body.appendChild(fakeTextarea);
+	fakeTextarea.textContent = e.currentTarget.value;
+	fakeTextarea.select();
+	document.execCommand('copy');
+	document.body.removeChild(fakeTextarea);
+};
 
 const EmojiPicker = ({ data }) => {
 	const groups = [];
