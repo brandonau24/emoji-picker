@@ -50,10 +50,15 @@ module.exports = {
 		open: true
 	},
 	plugins: [
-		new HtmlWebpackPlugin(),
+		new HtmlWebpackPlugin({
+			template: './template.html'
+		}),
 		new MiniCssExtractPlugin({
 			filename: 'styles.css'
 		})
 	],
-	devtool: 'source-map'
+	devtool: 'source-map',
+	externals: {
+		twemoji: 'twemoji'
+	}
 };

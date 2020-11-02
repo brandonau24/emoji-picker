@@ -4,10 +4,7 @@ import twemoji from 'twemoji';
 import EmojiPicker from 'EmojiPicker';
 import data from './emoji-data.json';
 
-const root = document.createElement('div');
-root.id = 'emoji-picker';
-
-document.body.append(root);
+const root = document.querySelector('#emoji-picker');
 
 ReactDOM.render(<EmojiPicker data={data} />, root);
 
