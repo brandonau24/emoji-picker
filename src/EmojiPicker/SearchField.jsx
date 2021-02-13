@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './SearchField.scss';
+
 class SearchField extends React.Component {
 	constructor(props) {
 		super(props);
@@ -18,7 +20,7 @@ class SearchField extends React.Component {
 	render() {
 		const { searchValue } = this.state;
 
-		return <input type="text" value={searchValue} onChange={this.onChange} placeholder="Search for an emoji" />;
+		return <input id="search-field" type="text" value={searchValue} onChange={this.onChange} placeholder="Search for an emoji" />;
 	}
 }
 
