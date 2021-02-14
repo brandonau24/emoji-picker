@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import EmojiGroup from 'EmojiGroup';
 import SearchField from './SearchField';
 
+import './EmojiPicker.scss';
+
 const copyEmoji = (e) => {
 	const fakeTextarea = document.createElement('textarea');
 	document.body.appendChild(fakeTextarea);
@@ -25,7 +27,7 @@ const EmojiPicker = ({ data }) => {
 		<>
 			<SearchField />
 			{groups}
-			<div id="footer">{`Built with Unicode Emoji v${data.version}`}</div>
+			<div id="footer"><strong>{`Built with Unicode Emoji v${data.version}`}</strong></div>
 		</>
 	);
 };
