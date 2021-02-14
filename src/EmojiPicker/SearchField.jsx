@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './SearchField.scss';
 
@@ -14,7 +15,12 @@ class SearchField extends React.Component {
 	}
 
 	onChange(event) {
-		this.setState({ searchValue: event.target.value });
+		const { onChangeCallback } = this.props;
+		const searchValue = event.target.value;
+
+		this.setState({ searchValue });
+
+		onChangeCallback(searchValue);
 	}
 
 	render() {
@@ -23,5 +29,9 @@ class SearchField extends React.Component {
 		return <input id="search-field" type="text" value={searchValue} onChange={this.onChange} placeholder="Search for an emoji" />;
 	}
 }
+
+SearchField.propTypes = {
+	onChangeCallback: PropTypes.func.isRequired
+};
 
 export default SearchField;
