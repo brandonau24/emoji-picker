@@ -32,4 +32,17 @@ describe('Emoji', () => {
 
 		expect(subject.find('.emoji')).toHaveLength(0);
 	});
+
+	[
+		'FACE',
+		'faCE',
+		'Face',
+		'face'
+	].forEach((testCase) => {
+		it('is visible when its name includes search value (case insensitive)', () => {
+			subject = shallow(<Emoji codepoints="1F600" name="grinning face" onClick={onClick} searchValue={testCase} />);
+
+			expect(subject.find('.emoji')).toHaveLength(1);
+		});
+	});
 });

@@ -14,7 +14,7 @@ const Emoji = ({
 }) => {
 	const transformedCodepoints = transformCodepoints(codepoints);
 
-	return name.includes(searchValue)
+	return name.toLowerCase().includes(searchValue.toLowerCase())
 		&& <button type="button" className="emoji" title={name} alt={name} value={transformedCodepoints} onClick={onClick}>{transformedCodepoints}</button>;
 };
 
