@@ -26,4 +26,10 @@ describe('Emoji', () => {
 	it('binds click handler from props', () => {
 		expect(subject.prop('onClick')).toBe(onClick);
 	});
+
+	it('is hidden when its name does not include search value', () => {
+		subject = shallow(<Emoji codepoints="1F600" name="grinning face" onClick={onClick} searchValue="heart" />);
+
+		expect(subject.find('.emoji')).toHaveLength(0);
+	});
 });
