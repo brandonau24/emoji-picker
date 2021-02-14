@@ -31,11 +31,13 @@ class EmojiPicker extends React.Component {
 
 	render() {
 		const { data } = this.props;
+		const { searchValue } = this.state;
 		const groups = [];
 
 		Object.entries(data).forEach(([key, value]) => {
 			if (key !== 'version') {
-				groups.push(<EmojiGroup key={key} groupName={key} group={value} onClick={copyEmoji} />);
+				// eslint-disable-next-line max-len
+				groups.push(<EmojiGroup key={key} groupName={key} group={value} onClick={copyEmoji} searchValue={searchValue} />);
 			}
 		});
 
