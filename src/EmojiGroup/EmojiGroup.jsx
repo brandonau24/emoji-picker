@@ -6,7 +6,7 @@ import './EmojiGroup.scss';
 
 const EmojiGroup = ({ groupName, group, onClick }) => (
 	<div className="emoji-group">
-		<h4 className="emoji-group-name">{groupName}</h4>
+		<h2 className="emoji-group-name">{groupName}</h2>
 		{
 			Object.values(group).map((emojis) => emojis.map(
 				(emoji) => (
