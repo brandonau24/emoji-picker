@@ -55,4 +55,10 @@ describe('EmojiPicker', () => {
 			expect(execCommandSpy).toBeCalledWith('copy');
 		});
 	});
+
+	it('sets state of search field value from callback', () => {
+		subject.instance().onSearchValueChange('new value');
+
+		expect(subject.state('searchValue')).toBe('new value');
+	});
 });

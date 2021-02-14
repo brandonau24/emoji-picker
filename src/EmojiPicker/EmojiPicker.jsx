@@ -14,23 +14,40 @@ const copyEmoji = (e) => {
 	document.body.removeChild(fakeTextarea);
 };
 
-const EmojiPicker = ({ data }) => {
-	const groups = [];
+class EmojiPicker extends React.Component {
+	constructor(props) {
+		super(props);
 
-	Object.entries(data).forEach(([key, value]) => {
-		if (key !== 'version') {
-			groups.push(<EmojiGroup key={key} groupName={key} group={value} onClick={copyEmoji} />);
-		}
-	});
+		this.state = {
+			searchValue: ''
+		};
 
-	return (
-		<>
-			<SearchField />
-			{groups}
-			<div id="footer"><strong>{`Built with Unicode Emoji v${data.version}`}</strong></div>
-		</>
-	);
-};
+		this.onSearchValueChange = this.onSearchValueChange.bind(this);
+	}
+
+	onSearchValueChange(searchValue) {
+		this.setState({ searchValue });
+	}
+
+	render() {
+		const { data } = this.props;
+		const groups = [];
+
+		Object.entries(data).forEach(([key, value]) => {
+			if (key !== 'version') {
+				groups.push(<EmojiGroup key={key} groupName={key} group={value} onClick={copyEmoji} />);
+			}
+		});
+
+		return (
+			<>
+				<SearchField onChangeCallback={this.onSearchValueChange} />
+				{groups}
+				<div id="footer"><strong>{`Built with Unicode Emoji v${data.version}`}</strong></div>
+			</>
+		);
+	}
+}
 
 EmojiPicker.propTypes = {
 	data: PropTypes.objectOf(PropTypes.oneOfType([
