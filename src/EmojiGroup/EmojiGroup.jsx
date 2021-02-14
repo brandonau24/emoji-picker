@@ -4,7 +4,9 @@ import Emoji from 'Emoji';
 
 import './EmojiGroup.scss';
 
-const EmojiGroup = ({ groupName, group, onClick }) => (
+const EmojiGroup = ({
+	groupName, group, onClick, searchValue
+}) => (
 	<div className="emoji-group">
 		<h2 className="emoji-group-name">{groupName}</h2>
 		{
@@ -18,6 +20,7 @@ const EmojiGroup = ({ groupName, group, onClick }) => (
 						name={emoji.name}
 						codepoints={emoji.codepoints}
 						onClick={onClick}
+						searchValue={searchValue}
 						/* eslint-enable */
 					/>
 				)
@@ -29,7 +32,12 @@ const EmojiGroup = ({ groupName, group, onClick }) => (
 EmojiGroup.propTypes = {
 	groupName: PropTypes.string.isRequired,
 	group: PropTypes.objectOf(PropTypes.array).isRequired,
-	onClick: PropTypes.func.isRequired
+	onClick: PropTypes.func.isRequired,
+	searchValue: PropTypes.string
+};
+
+EmojiGroup.defaultProps = {
+	searchValue: ''
 };
 
 export default EmojiGroup;
