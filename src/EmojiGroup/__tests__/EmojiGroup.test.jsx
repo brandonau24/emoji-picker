@@ -30,7 +30,7 @@ describe('EmojiGroup', () => {
 	});
 
 	it('renders header with group name', () => {
-		expect(subject.find('h4').text()).toBe(groupName);
+		expect(subject.find('.emoji-group-name').text()).toBe(groupName);
 	});
 
 	it('renders emojis in a subgroup', () => {
