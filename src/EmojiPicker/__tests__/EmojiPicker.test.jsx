@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
+import twemoji from 'twemoji';
 import EmojiPicker from 'EmojiPicker';
 import EmojiGroup from 'EmojiGroup';
 
@@ -54,6 +55,17 @@ describe('EmojiPicker', () => {
 			expect(removeChildSpy).toBeCalled();
 			expect(execCommandSpy).toBeCalledWith('copy');
 		});
+	});
+
+	// This test needs to be before any state updates
+	// The goal of this test is to ensure the parse function is called once when state updates
+	// However, putting this test after the one below it shows 2 calls, not one
+	// For reasons unknown, the instance of subject is not different between the 2 tests
+	// which means state changes between tests are present
+	it('parses with twemoji after component is updated', () => {
+		subject.setState({ searchValue: 'foo' });
+
+		expect(twemoji.parse).toHaveBeenCalledTimes(1);
 	});
 
 	it('sets state of search field value from callback', () => {

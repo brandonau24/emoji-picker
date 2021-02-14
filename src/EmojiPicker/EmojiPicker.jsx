@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import twemoji from 'twemoji';
+
 import EmojiGroup from 'EmojiGroup';
 import SearchField from './SearchField';
 
@@ -23,6 +25,14 @@ class EmojiPicker extends React.Component {
 		};
 
 		this.onSearchValueChange = this.onSearchValueChange.bind(this);
+	}
+
+	componentDidUpdate() {
+		twemoji.parse(document.querySelector('#emoji-picker'), {
+			folder: 'svg',
+			ext: '.svg',
+			className: 'emoji-img'
+		});
 	}
 
 	onSearchValueChange(searchValue) {

@@ -10,6 +10,7 @@ module.exports = {
 		EmojiPicker$: '<rootDir>/src/EmojiPicker/EmojiPicker.jsx',
 		EmojiGroup$: '<rootDir>/src/EmojiGroup/EmojiGroup.jsx',
 		Emoji$: '<rootDir>/src/Emoji/Emoji.jsx',
-		"\\.s?css$": 'identity-obj-proxy'
+		"\\.s?css$": 'identity-obj-proxy',
+		twemoji$: '<rootDir>/src/mocks/twemoji.js'
 	}
 };
