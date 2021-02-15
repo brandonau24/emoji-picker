@@ -46,24 +46,26 @@ class EmojiPicker extends React.Component {
 		const groups = [];
 		const { version } = data;
 
-		delete data.version;
-
 		if (!searchValue) {
 			Object.entries(data).forEach(([key, value]) => {
-				// eslint-disable-next-line max-len
-				groups.push(<EmojiGroup key={key} groupName={key} group={value} onClick={copyEmoji} searchValue={searchValue} />);
+				if (key !== 'version') {
+					// eslint-disable-next-line max-len
+					groups.push(<EmojiGroup key={key} groupName={key} group={value} onClick={copyEmoji} searchValue={searchValue} />);
+				}
 			});
 		} else {
 			Object.keys(data).forEach((groupName) => {
-				Object.values(data[groupName]).forEach((subgroup) => {
-					subgroup.forEach((emoji) => {
-						const { name, codepoints } = emoji;
-						if (name.toLowerCase().includes(searchValue.toLowerCase())) {
-							// eslint-disable-next-line max-len
-							groups.push(<Emoji key={name} name={name} codepoints={codepoints} onClick={copyEmoji} />);
-						}
+				if (groupName !== 'version') {
+					Object.values(data[groupName]).forEach((subgroup) => {
+						subgroup.forEach((emoji) => {
+							const { name, codepoints } = emoji;
+							if (name.toLowerCase().includes(searchValue.toLowerCase())) {
+								// eslint-disable-next-line max-len
+								groups.push(<Emoji key={name} name={name} codepoints={codepoints} onClick={copyEmoji} />);
+							}
+						});
 					});
-				});
+				}
 			});
 		}
 
