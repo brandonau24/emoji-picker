@@ -19,7 +19,11 @@ const EmojisFiltered = ({ data, searchValue, onClickEmoji }) => {
 		}
 	});
 
-	return emojis;
+	return (
+		<div style={{ padding: '3.5rem' }}>
+			{emojis}
+		</div>
+	);
 };
 
 EmojisFiltered.propTypes = {
