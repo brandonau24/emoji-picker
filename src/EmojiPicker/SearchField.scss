@@ -10,6 +10,7 @@
 	font-family: inherit;
 	left: 50%;
 	transform: translateX(-50%);
+	z-index: 999;
 
 	&:focus {
 		outline: none;
