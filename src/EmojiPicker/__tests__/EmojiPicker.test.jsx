@@ -2,8 +2,8 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import twemoji from 'twemoji';
 import EmojiPicker from 'EmojiPicker';
-import EmojiGroup from 'EmojiGroup';
-import Emoji from 'Emoji';
+import EmojiGroups from '../EmojiGroups/EmojiGroups';
+import EmojisFiltered from '../EmojisFiltered/EmojisFiltered';
 
 describe('EmojiPicker', () => {
 	const data = {
@@ -40,8 +40,8 @@ describe('EmojiPicker', () => {
 		subject = shallow(<EmojiPicker data={data} />);
 	});
 
-	it('creates emoji groups for top level groups', () => {
-		expect(subject.find(EmojiGroup)).toHaveLength(3);
+	it('creates EmojiGroups for top level groups when search value is empty', () => {
+		expect(subject.find(EmojiGroups)).toHaveLength(1);
 	});
 
 	it('creates footer with Unicode version', () => {
@@ -99,6 +99,6 @@ describe('EmojiPicker', () => {
 	it('renders emojis that include the search value (case insensitive)', () => {
 		subject.setState({ searchValue: 'face' });
 
-		expect(subject.find(Emoji)).toHaveLength(2);
+		expect(subject.find(EmojisFiltered)).toHaveLength(1);
 	});
 });

@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import twemoji from 'twemoji';
 
-import EmojiGroup from 'EmojiGroup';
-import Emoji from 'Emoji';
+import EmojiGroups from './EmojiGroups/EmojiGroups';
+import EmojisFiltered from './EmojisFiltered/EmojisFiltered';
 import SearchField from './SearchField';
 
 import './EmojiPicker.scss';
@@ -43,36 +43,20 @@ class EmojiPicker extends React.Component {
 	render() {
 		const { data } = this.props;
 		const { searchValue } = this.state;
-		const groups = [];
 		const { version } = data;
+		let emojiPickerBody;
 
 		if (!searchValue) {
-			Object.entries(data).forEach(([key, value]) => {
-				if (key !== 'version') {
-					// eslint-disable-next-line max-len
-					groups.push(<EmojiGroup key={key} groupName={key} group={value} onClick={copyEmoji} />);
-				}
-			});
+			emojiPickerBody = <EmojiGroups data={data} onClickEmoji={copyEmoji} />;
 		} else {
-			Object.keys(data).forEach((groupName) => {
-				if (groupName !== 'version') {
-					Object.values(data[groupName]).forEach((subgroup) => {
-						subgroup.forEach((emoji) => {
-							const { name, codepoints } = emoji;
-							if (name.toLowerCase().includes(searchValue.toLowerCase())) {
-								// eslint-disable-next-line max-len
-								groups.push(<Emoji key={name} name={name} codepoints={codepoints} onClick={copyEmoji} />);
-							}
-						});
-					});
-				}
-			});
+			// eslint-disable-next-line max-len
+			emojiPickerBody = <EmojisFiltered data={data} searchValue={searchValue} onClickEmoji={copyEmoji} />;
 		}
 
 		return (
 			<>
 				<SearchField onChangeCallback={this.onSearchValueChange} />
-				{groups}
+				{emojiPickerBody}
 				<div id="footer"><strong>{`Built with Unicode Emoji v${version}`}</strong></div>
 			</>
 		);
