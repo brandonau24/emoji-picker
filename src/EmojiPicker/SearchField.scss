@@ -1,5 +1,6 @@
 #search-field {
 	display: block;
+	position: fixed;
 	width: 35%;
 	margin: 0 auto;
 	padding: 1rem;
@@ -7,6 +8,9 @@
 	border-radius: 3rem;
 	font-size: 1rem;
 	font-family: inherit;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 999;
 
 	&:focus {
 		outline: none;

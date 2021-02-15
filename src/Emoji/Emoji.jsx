@@ -9,24 +9,16 @@ const transformCodepoints = (codepoints) => {
 	return String.fromCodePoint(...transformedCodepoints);
 };
 
-const Emoji = ({
-	codepoints, name, onClick, searchValue
-}) => {
+const Emoji = ({ codepoints, name, onClick }) => {
 	const transformedCodepoints = transformCodepoints(codepoints);
 
-	return name.toLowerCase().includes(searchValue.toLowerCase())
-		&& <button type="button" className="emoji" title={name} alt={name} value={transformedCodepoints} onClick={onClick}>{transformedCodepoints}</button>;
+	return <button type="button" className="emoji" title={name} alt={name} value={transformedCodepoints} onClick={onClick}>{transformedCodepoints}</button>;
 };
 
 Emoji.propTypes = {
 	codepoints: PropTypes.string.isRequired,
 	name: PropTypes.string.isRequired,
-	onClick: PropTypes.func.isRequired,
-	searchValue: PropTypes.string
-};
-
-Emoji.defaultProps = {
-	searchValue: ''
+	onClick: PropTypes.func.isRequired
 };
 
 export default Emoji;

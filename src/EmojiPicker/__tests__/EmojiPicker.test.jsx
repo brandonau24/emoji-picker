@@ -2,14 +2,36 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import twemoji from 'twemoji';
 import EmojiPicker from 'EmojiPicker';
-import EmojiGroup from 'EmojiGroup';
+import EmojiGroups from '../EmojiGroups/EmojiGroups';
+import EmojisFiltered from '../EmojisFiltered/EmojisFiltered';
 
 describe('EmojiPicker', () => {
 	const data = {
 		version: '13.0',
-		'group-1': {},
-		'group-2': {},
-		'group-3': {}
+		'group-1': {
+			'subgroup-1': [
+				{
+					name: 'grinning face',
+					codepoints: 'codepoints'
+				}
+			]
+		},
+		'group-2': {
+			'subgroup-2': [
+				{
+					name: 'smiley face',
+					codepoints: 'codepoints'
+				}
+			]
+		},
+		'group-3': {
+			'subgroup-3': [
+				{
+					name: 'heart',
+					codepoints: 'codepoints'
+				}
+			]
+		}
 	};
 
 	let subject;
@@ -18,8 +40,8 @@ describe('EmojiPicker', () => {
 		subject = shallow(<EmojiPicker data={data} />);
 	});
 
-	it('creates emoji groups for top level groups', () => {
-		expect(subject.find(EmojiGroup)).toHaveLength(3);
+	it('creates EmojiGroups for top level groups when search value is empty', () => {
+		expect(subject.find(EmojiGroups)).toHaveLength(1);
 	});
 
 	it('creates footer with Unicode version', () => {
@@ -72,5 +94,11 @@ describe('EmojiPicker', () => {
 		subject.instance().onSearchValueChange('new value');
 
 		expect(subject.state('searchValue')).toBe('new value');
+	});
+
+	it('renders emojis that include the search value (case insensitive)', () => {
+		subject.setState({ searchValue: 'face' });
+
+		expect(subject.find(EmojisFiltered)).toHaveLength(1);
 	});
 });
