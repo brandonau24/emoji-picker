@@ -3,13 +3,35 @@ import { shallow, mount } from 'enzyme';
 import twemoji from 'twemoji';
 import EmojiPicker from 'EmojiPicker';
 import EmojiGroup from 'EmojiGroup';
+import Emoji from 'Emoji';
 
 describe('EmojiPicker', () => {
 	const data = {
 		version: '13.0',
-		'group-1': {},
-		'group-2': {},
-		'group-3': {}
+		'group-1': {
+			'subgroup-1': [
+				{
+					name: 'emoji1',
+					codepoints: 'codepoints'
+				}
+			]
+		},
+		'group-2': {
+			'subgroup-2': [
+				{
+					name: 'emoji2',
+					codepoints: 'codepoints'
+				}
+			]
+		},
+		'group-3': {
+			'subgroup-3': [
+				{
+					name: 'emoji3',
+					codepoints: 'codepoints'
+				}
+			]
+		}
 	};
 
 	let subject;
@@ -72,5 +94,12 @@ describe('EmojiPicker', () => {
 		subject.instance().onSearchValueChange('new value');
 
 		expect(subject.state('searchValue')).toBe('new value');
+	});
+
+	it('renders only emojis when search value is not empty string', () => {
+		subject.setState({ searchValue: 'bar' });
+
+		expect(subject.find(EmojiGroup)).toHaveLength(0);
+		expect(subject.find(Emoji)).toHaveLength(3);
 	});
 });
