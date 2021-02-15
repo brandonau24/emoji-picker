@@ -58,9 +58,10 @@ class EmojiPicker extends React.Component {
 				Object.values(data[groupName]).forEach((subgroup) => {
 					subgroup.forEach((emoji) => {
 						const { name, codepoints } = emoji;
-
-						// eslint-disable-next-line max-len
-						groups.push(<Emoji key={name} name={name} codepoints={codepoints} onClick={copyEmoji} />);
+						if (name.toLowerCase().includes(searchValue.toLowerCase())) {
+							// eslint-disable-next-line max-len
+							groups.push(<Emoji key={name} name={name} codepoints={codepoints} onClick={copyEmoji} />);
+						}
 					});
 				});
 			});

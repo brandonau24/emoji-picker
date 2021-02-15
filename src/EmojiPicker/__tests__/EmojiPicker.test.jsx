@@ -11,7 +11,7 @@ describe('EmojiPicker', () => {
 		'group-1': {
 			'subgroup-1': [
 				{
-					name: 'emoji1',
+					name: 'grinning face',
 					codepoints: 'codepoints'
 				}
 			]
@@ -19,7 +19,7 @@ describe('EmojiPicker', () => {
 		'group-2': {
 			'subgroup-2': [
 				{
-					name: 'emoji2',
+					name: 'smiley face',
 					codepoints: 'codepoints'
 				}
 			]
@@ -27,7 +27,7 @@ describe('EmojiPicker', () => {
 		'group-3': {
 			'subgroup-3': [
 				{
-					name: 'emoji3',
+					name: 'heart',
 					codepoints: 'codepoints'
 				}
 			]
@@ -96,10 +96,9 @@ describe('EmojiPicker', () => {
 		expect(subject.state('searchValue')).toBe('new value');
 	});
 
-	it('renders only emojis when search value is not empty string', () => {
-		subject.setState({ searchValue: 'bar' });
+	it('renders emojis that include the search value (case insensitive)', () => {
+		subject.setState({ searchValue: 'face' });
 
-		expect(subject.find(EmojiGroup)).toHaveLength(0);
-		expect(subject.find(Emoji)).toHaveLength(3);
+		expect(subject.find(Emoji)).toHaveLength(2);
 	});
 });
