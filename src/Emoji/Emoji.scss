@@ -2,6 +2,7 @@
 
 $height: 3rem;
 $width: 3rem;
+$box-shadow-vals: 0 0 0.3125rem 0.0625rem;
 
 @mixin remove-button-styles() {
 	border: none;
@@ -24,7 +25,7 @@ $width: 3rem;
 	&:hover {
 		cursor: pointer;
 		position: relative;
-		box-shadow: 0 0 0.3125rem 0.0625rem #000000;
+		box-shadow: $box-shadow-vals black;
 	}
 
 	&:active {
@@ -35,6 +36,6 @@ $width: 3rem;
 @media (prefers-color-scheme: dark) {
 	.emoji:hover {
 		background-color: $dark-secondary;
-		box-shadow: 0 0 0.3125rem 0.0625rem $dark-secondary;
+		box-shadow: $box-shadow-vals $dark-secondary;
 	}
 }
