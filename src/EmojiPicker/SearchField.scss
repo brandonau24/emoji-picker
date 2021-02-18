@@ -16,3 +16,15 @@
 		outline: none;
 	}
 }
+
+@media (prefers-color-scheme: dark) {
+	#search-field {
+		background-color: #444;
+		color: inherit;
+
+		&::placeholder {
+			color: white;
+			opacity: 1;
+		}
+	}
+}

@@ -29,3 +29,10 @@ $width: 3rem;
 		transform: translateY(0.2rem);
 	}
 }
+
+@media (prefers-color-scheme: dark) {
+	.emoji:hover {
+		background-color: #444;
+		box-shadow: 0 0 0.3125rem 0.0625rem #333;
+	}
+}
