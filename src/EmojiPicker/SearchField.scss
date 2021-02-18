@@ -1,3 +1,5 @@
+@import 'styles/common/dark-colors.scss';
+
 #search-field {
 	display: block;
 	position: fixed;
@@ -19,7 +21,7 @@
 
 @media (prefers-color-scheme: dark) {
 	#search-field {
-		background-color: #444;
+		background-color: $dark-secondary;
 		color: inherit;
 
 		&::placeholder {
