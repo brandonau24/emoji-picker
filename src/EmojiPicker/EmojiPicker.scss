@@ -1,6 +1,8 @@
+@import 'styles/common/dark-colors.scss';
+
 @media (prefers-color-scheme: dark) {
 	#emoji-picker {
-		background-color: #121212;
+		background-color: $dark-primary;
 		color: white;
 	}
 }
