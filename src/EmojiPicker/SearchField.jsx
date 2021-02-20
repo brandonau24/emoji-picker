@@ -26,7 +26,11 @@ class SearchField extends React.Component {
 	render() {
 		const { searchValue } = this.state;
 
-		return <input id="search-field" type="text" value={searchValue} onChange={this.onChange} placeholder="Search for an emoji" />;
+		return (
+			<div className="search-field">
+				<input type="text" value={searchValue} onChange={this.onChange} placeholder="Search for an emoji" />
+			</div>
+		);
 	}
 }
 

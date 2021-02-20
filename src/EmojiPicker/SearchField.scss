@@ -1,32 +1,40 @@
 @import 'styles/common/dark-colors.scss';
 
-#search-field {
-	display: block;
+.search-field {
 	position: fixed;
 	width: 35%;
 	margin: 0 auto;
 	padding: 1rem;
 	border: .125rem solid black;
 	border-radius: 3rem;
-	font-size: 1rem;
-	font-family: inherit;
 	left: 50%;
 	transform: translateX(-50%);
 	z-index: 999;
 
-	&:focus {
-		outline: none;
+	input {
+		width: 80%;
+		font-size: 1rem;
+		font-family: inherit;
+		border: none;
+
+		&:focus {
+			outline: none;
+		}
 	}
 }
 
 @media (prefers-color-scheme: dark) {
-	#search-field {
+	.search-field {
 		background-color: $dark-secondary;
-		color: inherit;
 
-		&::placeholder {
-			color: white;
-			opacity: 1;
+		input {
+			background-color: inherit;
+			color: inherit;
+
+			&::placeholder {
+				color: white;
+				opacity: 1;
+			}
 		}
 	}
 }

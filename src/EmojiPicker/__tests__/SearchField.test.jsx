@@ -17,7 +17,7 @@ describe('SearchField', () => {
 			}
 		});
 
-		expect(subject.prop('value')).toBe('new value');
+		expect(subject.find('input').prop('value')).toBe('new value');
 	});
 
 	it('calls callback with search value', () => {
