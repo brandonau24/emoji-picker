@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import Icon from 'Icon';
 import SearchField from '../SearchField';
 
 describe('SearchField', () => {
@@ -28,5 +29,9 @@ describe('SearchField', () => {
 		});
 
 		expect(callback).toHaveBeenCalledWith('new value');
+	});
+
+	it('renders a search icon', () => {
+		expect(subject.find(Icon).prop('name')).toBe('search');
 	});
 });

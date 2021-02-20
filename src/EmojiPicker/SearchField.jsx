@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Icon from 'Icon';
 
 import './SearchField.scss';
 
@@ -28,6 +29,7 @@ class SearchField extends React.Component {
 
 		return (
 			<div className="search-field">
+				<Icon name="search" />
 				<input type="text" value={searchValue} onChange={this.onChange} placeholder="Search for an emoji" />
 			</div>
 		);
