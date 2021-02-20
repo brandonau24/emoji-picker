@@ -42,6 +42,7 @@ module.exports = {
 			EmojiPicker: path.resolve(srcPath, 'EmojiPicker/EmojiPicker.jsx'),
 			EmojiGroup: path.resolve(srcPath, 'EmojiGroup/EmojiGroup.jsx'),
 			Emoji: path.resolve(srcPath, 'Emoji/Emoji.jsx'),
+			Icon: path.resolve(srcPath, 'Icon/Icon.jsx'),
 			styles: path.resolve(srcPath, 'styles')
 		},
 		extensions: ['.js', '.jsx']
