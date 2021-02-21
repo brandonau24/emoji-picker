@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Icon from 'Icon';
-import SearchField from '../SearchField';
+import SearchField from 'Toolbar/SearchField/SearchField';
 
 describe('SearchField', () => {
 	const callback = jest.fn();

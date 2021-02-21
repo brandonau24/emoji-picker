@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import twemoji from 'twemoji';
 
+import SearchField from 'Toolbar/SearchField/SearchField';
 import EmojiGroups from './EmojiGroups/EmojiGroups';
 import EmojisFiltered from './EmojisFiltered/EmojisFiltered';
-import SearchField from './SearchField';
 
 import './EmojiPicker.scss';
 
