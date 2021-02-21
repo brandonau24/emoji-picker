@@ -1,12 +1,12 @@
 @import 'styles/common/dark-colors.scss';
 
 .search-field {
-	position: fixed;
+	position: sticky;
 	width: 35%;
-	margin: 0 auto;
 	padding: 1rem;
 	border: .125rem solid black;
 	border-radius: 3rem;
+	top: 0;
 	left: 50%;
 	transform: translateX(-50%);
 	z-index: 999;
