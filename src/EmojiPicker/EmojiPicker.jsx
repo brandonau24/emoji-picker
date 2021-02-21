@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import twemoji from 'twemoji';
 
-import SearchField from 'Toolbar/SearchField/SearchField';
+import Toolbar from 'Toolbar/Toolbar';
 import EmojiGroups from './EmojiGroups/EmojiGroups';
 import EmojisFiltered from './EmojisFiltered/EmojisFiltered';
 
@@ -55,7 +55,7 @@ class EmojiPicker extends React.Component {
 
 		return (
 			<>
-				<SearchField onChangeCallback={this.onSearchValueChange} />
+				<Toolbar onSearchFieldChangeCallback={this.onSearchValueChange} />
 				{emojiPickerBody}
 				<div id="footer"><strong>{`Built with Unicode Emoji v${version}`}</strong></div>
 			</>
