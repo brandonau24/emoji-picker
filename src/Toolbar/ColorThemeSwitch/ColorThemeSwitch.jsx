@@ -5,7 +5,7 @@ class ColorThemeSwitch extends React.Component {
 		super(props);
 
 		this.state = {
-			useDarkTheme: false
+			useDarkTheme: window.matchMedia('(prefers-color-scheme: dark)').matches
 		};
 
 		this.onToggle = this.onToggle.bind(this);
