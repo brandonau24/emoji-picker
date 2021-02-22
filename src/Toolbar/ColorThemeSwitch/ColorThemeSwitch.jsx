@@ -4,8 +4,15 @@ class ColorThemeSwitch extends React.Component {
 	constructor(props) {
 		super(props);
 
+		let useDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+		const storageValue = window.localStorage.getItem('useDarkTheme');
+		if (storageValue !== null) {
+			useDarkTheme = !!storageValue;
+		}
+
 		this.state = {
-			useDarkTheme: window.matchMedia('(prefers-color-scheme: dark)').matches
+			useDarkTheme
 		};
 
 		this.onToggle = this.onToggle.bind(this);
@@ -15,6 +22,8 @@ class ColorThemeSwitch extends React.Component {
 		this.setState({
 			useDarkTheme: event.target.checked
 		});
+
+		window.localStorage.setItem('useDarkTheme', event.target.checked);
 	}
 
 	render() {
