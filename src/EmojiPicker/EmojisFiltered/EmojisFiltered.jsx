@@ -20,7 +20,7 @@ const EmojisFiltered = ({ data, searchValue, onClickEmoji }) => {
 	});
 
 	return (
-		<div style={{ padding: '3.5rem' }}>
+		<div style={{ padding: '1.5rem' }}>
 			{emojis}
 		</div>
 	);
