@@ -95,5 +95,27 @@ describe('ColorThemeSwitch', () => {
 
 			expect(subject.prop('checked')).toBeFalsy();
 		});
+
+		it('uses dark OS settings when user preference is not set', () => {
+			jest.spyOn(Storage.prototype, 'getItem').mockImplementation(() => null);
+			window.matchMedia.mockReturnValueOnce({
+				matches: true
+			});
+
+			const subject = shallow(<ColorThemeSwitch />);
+
+			expect(subject.prop('checked')).toBeTruthy();
+		});
+
+		it('uses light OS settings when user preference is not set', () => {
+			jest.spyOn(Storage.prototype, 'getItem').mockImplementation(() => null);
+			window.matchMedia.mockReturnValueOnce({
+				matches: false
+			});
+
+			const subject = shallow(<ColorThemeSwitch />);
+
+			expect(subject.prop('checked')).toBeFalsy();
+		});
 	});
 });
