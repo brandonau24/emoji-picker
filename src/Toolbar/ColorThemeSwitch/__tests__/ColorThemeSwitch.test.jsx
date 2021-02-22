@@ -31,29 +31,6 @@ describe('ColorThemeSwitch', () => {
 		});
 	});
 
-	// describe('Media Query Value', () => {
-	// 	it('sets state to use dark theme when user OS theme is dark', () => {
-	// 		window.matchMedia.mockReturnValueOnce({
-	// 			matches: true
-	// 		});
-
-	// 		const subject = shallow(<ColorThemeSwitch />);
-
-	// 		expect(window.matchMedia).toHaveBeenCalledWith('(prefers-color-scheme: dark)');
-	// 		expect(subject.prop('checked')).toBeTruthy();
-	// 	});
-
-	// 	it('sets state to use light theme when user OS theme is light', () => {
-	// 		window.matchMedia.mockReturnValueOnce({
-	// 			matches: false
-	// 		});
-
-	// 		const subject = shallow(<ColorThemeSwitch />);
-
-	// 		expect(subject.prop('checked')).toBeFalsy();
-	// 	});
-	// });
-
 	describe('User Preference with Local Storage', () => {
 		const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
 
