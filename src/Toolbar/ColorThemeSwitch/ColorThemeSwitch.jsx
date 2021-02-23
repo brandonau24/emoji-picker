@@ -7,9 +7,9 @@ class ColorThemeSwitch extends React.Component {
 
 		let useDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-		const storageValue = window.localStorage.getItem('useDarkTheme');
+		const storageValue = JSON.parse(window.localStorage.getItem('useDarkTheme'));
 		if (storageValue !== null) {
-			useDarkTheme = !!storageValue;
+			useDarkTheme = storageValue;
 		}
 
 		this.state = {
@@ -31,11 +31,11 @@ class ColorThemeSwitch extends React.Component {
 		const { useDarkTheme } = this.state;
 
 		return (
-			<>
+			<div className="color-theme-switch-container">
 				<Icon className="sun-icon" name="sun-o" />
 				<input id="color-theme-switch" type="checkbox" checked={useDarkTheme} onChange={this.onToggle} />
 				<Icon className="moon-icon" name="moon-o" />
-			</>
+			</div>
 		);
 	}
 }

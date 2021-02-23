@@ -79,5 +79,18 @@ describe('ColorThemeSwitch', () => {
 
 			expect(colorThemeSwitch.prop('checked')).toBe(isOsDark);
 		});
+
+		it('parses boolean string correctly from storage', () => {
+			const jsonParseSpy = jest.spyOn(JSON, 'parse');
+			jest.spyOn(Storage.prototype, 'getItem').mockImplementation(() => 'false');
+			window.matchMedia.mockReturnValueOnce({
+				matches: false
+			});
+
+			const subject = shallow(<ColorThemeSwitch />);
+
+			expect(jsonParseSpy).toHaveBeenCalledWith('false');
+			expect(subject.state('useDarkTheme')).toBeFalsy();
+		});
 	});
 });
