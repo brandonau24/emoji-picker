@@ -52,6 +52,10 @@ describe('EmojiPicker', () => {
 
 	describe('#copyEmoji', () => {
 		it('copies emoji to clipboard', () => {
+			window.matchMedia = jest.fn().mockReturnValue({
+				matches: false
+			});
+
 			const createElementSpy = jest.spyOn(document, 'createElement');
 			const appendChildSpy = jest.spyOn(document.body, 'appendChild');
 			const removeChildSpy = jest.spyOn(document.body, 'removeChild');
