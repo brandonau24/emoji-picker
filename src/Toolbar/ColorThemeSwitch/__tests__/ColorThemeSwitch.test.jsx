@@ -14,85 +14,59 @@ describe('ColorThemeSwitch', () => {
 			subject = shallow(<ColorThemeSwitch />);
 		});
 
-		it('sets state to use dark theme when switch is clicked and switch is toggled off', () => {
-			subject.simulate('change', { target: { checked: true } });
+		it.each([
+			[true, true],
+			[false, false]
+		])('sets useDarkTheme state (%s) to value of switch (%s)', (expectedStateValue, switchValue) => {
+			subject.simulate('change', { target: { checked: switchValue } });
 
-			expect(subject.state('useDarkTheme')).toBeTruthy();
-		});
-
-		it('sets state to use light them when switch is toggled on and switch is clicked', () => {
-			subject.setState({
-				useDarkTheme: true
-			});
-
-			subject.simulate('change', { target: { checked: false } });
-
-			expect(subject.state('useDarkTheme')).toBeFalsy();
+			expect(subject.state('useDarkTheme')).toBe(expectedStateValue);
 		});
 	});
 
 	describe('User Preference with Local Storage', () => {
 		const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
 
-		it('sets user preference to dark theme when switch is toggled on', () => {
+		it.each([
+			[true, true],
+			[false, false]
+		])('sets user preference (%s) to value of switch (%s)', (expectedUserPref, switchValue) => {
 			const subject = shallow(<ColorThemeSwitch />);
 
-			subject.simulate('change', { target: { checked: true } });
+			subject.simulate('change', { target: { checked: switchValue } });
 
-			expect(setItemSpy).toHaveBeenCalledWith('useDarkTheme', true);
+			expect(setItemSpy).toHaveBeenCalledWith('useDarkTheme', expectedUserPref);
 		});
 
-		it('sets user preference to light theme when switch is toggled off', () => {
-			const subject = shallow(<ColorThemeSwitch />);
-
-			subject.simulate('change', { target: { checked: false } });
-
-			expect(setItemSpy).toHaveBeenCalledWith('useDarkTheme', false);
-		});
-
-		it('prioritizes dark theme user preference over OS theme', () => {
-			const getItemSpy = jest.spyOn(Storage.prototype, 'getItem').mockImplementation(() => true);
+		// true = dark theme
+		it.each([
+			[false, true],
+			[true, false]
+		])('prioritizes user theme preference (%s) over OS theme (%s)', (expectedSwitchValue, isOsDark,) => {
+			const getItemSpy = jest.spyOn(Storage.prototype, 'getItem').mockImplementation(() => expectedSwitchValue);
 			window.matchMedia.mockReturnValueOnce({
-				matches: false
+				matches: isOsDark
 			});
 
 			const subject = shallow(<ColorThemeSwitch />);
 
 			expect(getItemSpy).toHaveBeenCalledWith('useDarkTheme');
-			expect(subject.prop('checked')).toBeTruthy();
+			expect(subject.prop('checked')).toBe(expectedSwitchValue);
 		});
 
-		it('prioritizes light theme user preference over OS theme', () => {
-			jest.spyOn(Storage.prototype, 'getItem').mockImplementation(() => false);
-			window.matchMedia.mockReturnValueOnce({
-				matches: true
-			});
-
-			const subject = shallow(<ColorThemeSwitch />);
-
-			expect(subject.prop('checked')).toBeFalsy();
-		});
-
-		it('uses dark OS settings when user preference is not set', () => {
+		// true = dark theme
+		it.each([
+			[true],
+			[false]
+		])('uses OS theme settings (%s) when user preference is not set', (isOsDark) => {
 			jest.spyOn(Storage.prototype, 'getItem').mockImplementation(() => null);
 			window.matchMedia.mockReturnValueOnce({
-				matches: true
+				matches: isOsDark
 			});
 
 			const subject = shallow(<ColorThemeSwitch />);
 
-			expect(subject.prop('checked')).toBeTruthy();
-		});
-
-		it('uses light OS settings when user preference is not set', () => {
-			jest.spyOn(Storage.prototype, 'getItem').mockImplementation(() => null);
-			window.matchMedia.mockReturnValueOnce({
-				matches: false
-			});
-
-			const subject = shallow(<ColorThemeSwitch />);
-
-			expect(subject.prop('checked')).toBeFalsy();
+			expect(subject.prop('checked')).toBe(isOsDark);
 		});
 	});
 });
