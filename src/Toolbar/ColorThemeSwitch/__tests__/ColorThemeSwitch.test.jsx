@@ -11,7 +11,13 @@ describe('ColorThemeSwitch', () => {
 	it('renders sun icon', () => {
 		const subject = shallow(<ColorThemeSwitch />);
 
-		expect(subject.find(Icon).prop('name')).toBe('sun-o');
+		expect(subject.find('.sun-icon').prop('name')).toBe('sun-o');
+	});
+
+	it('renders moon icon', () => {
+		const subject = shallow(<ColorThemeSwitch />);
+
+		expect(subject.find('.moon-icon').prop('name')).toBe('moon-o');
 	});
 
 	describe('Change Event', () => {
