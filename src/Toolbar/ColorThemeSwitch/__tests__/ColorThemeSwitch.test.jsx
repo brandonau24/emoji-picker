@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import Icon from 'Icon';
 import ColorThemeSwitch from '../ColorThemeSwitch';
 
 describe('ColorThemeSwitch', () => {
@@ -7,18 +8,20 @@ describe('ColorThemeSwitch', () => {
 		matches: false
 	});
 
+	it('renders sun icon', () => {
+		const subject = shallow(<ColorThemeSwitch />);
+
+		expect(subject.find(Icon).prop('name')).toBe('sun-o');
+	});
+
 	describe('Change Event', () => {
-		let subject;
-
-		beforeEach(() => {
-			subject = shallow(<ColorThemeSwitch />);
-		});
-
 		it.each([
 			[true, true],
 			[false, false]
 		])('sets useDarkTheme state (%s) to value of switch (%s)', (expectedStateValue, switchValue) => {
-			subject.simulate('change', { target: { checked: switchValue } });
+			const subject = shallow(<ColorThemeSwitch />);
+			const colorThemeSwitch = subject.find('#color-theme-switch');
+			colorThemeSwitch.simulate('change', { target: { checked: switchValue } });
 
 			expect(subject.state('useDarkTheme')).toBe(expectedStateValue);
 		});
@@ -32,8 +35,9 @@ describe('ColorThemeSwitch', () => {
 			[false, false]
 		])('sets user preference (%s) to value of switch (%s)', (expectedUserPref, switchValue) => {
 			const subject = shallow(<ColorThemeSwitch />);
+			const colorThemeSwitch = subject.find('#color-theme-switch');
 
-			subject.simulate('change', { target: { checked: switchValue } });
+			colorThemeSwitch.simulate('change', { target: { checked: switchValue } });
 
 			expect(setItemSpy).toHaveBeenCalledWith('useDarkTheme', expectedUserPref);
 		});
@@ -49,9 +53,10 @@ describe('ColorThemeSwitch', () => {
 			});
 
 			const subject = shallow(<ColorThemeSwitch />);
+			const colorThemeSwitch = subject.find('#color-theme-switch');
 
 			expect(getItemSpy).toHaveBeenCalledWith('useDarkTheme');
-			expect(subject.prop('checked')).toBe(expectedSwitchValue);
+			expect(colorThemeSwitch.prop('checked')).toBe(expectedSwitchValue);
 		});
 
 		// true = dark theme
@@ -65,8 +70,9 @@ describe('ColorThemeSwitch', () => {
 			});
 
 			const subject = shallow(<ColorThemeSwitch />);
+			const colorThemeSwitch = subject.find('#color-theme-switch');
 
-			expect(subject.prop('checked')).toBe(isOsDark);
+			expect(colorThemeSwitch.prop('checked')).toBe(isOsDark);
 		});
 	});
 });
