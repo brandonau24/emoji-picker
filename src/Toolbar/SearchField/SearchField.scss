@@ -1,4 +1,4 @@
-@import 'styles/common/dark-colors.scss';
+@import './SearchField-dark.scss';
 
 .search-field {
 	display: flex;
@@ -22,22 +22,6 @@
 
 		&:focus {
 			outline: none;
-		}
-	}
-}
-
-@media (prefers-color-scheme: dark) {
-	.search-field {
-		background-color: $dark-secondary;
-
-		input {
-			background-color: inherit;
-			color: inherit;
-
-			&::placeholder {
-				color: white;
-				opacity: 1;
-			}
 		}
 	}
 }

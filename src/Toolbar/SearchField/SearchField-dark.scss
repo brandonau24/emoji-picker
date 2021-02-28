@@ -1,0 +1,17 @@
+@import 'styles/common/dark-colors.scss';
+
+.dark-theme {
+	.search-field {
+		background-color: $dark-secondary;
+
+		input {
+			background-color: inherit;
+			color: inherit;
+
+			&::placeholder {
+				color: white;
+				opacity: 1;
+			}
+		}
+	}
+}
