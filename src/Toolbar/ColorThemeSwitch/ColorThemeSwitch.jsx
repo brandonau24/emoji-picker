@@ -8,8 +8,10 @@ export function toggleTheme(useDarkTheme) {
 
 	if (useDarkTheme) {
 		emojiPickerClasses.add('dark-theme');
+		emojiPickerClasses.remove('light-theme');
 	} else {
 		emojiPickerClasses.add('light-theme');
+		emojiPickerClasses.remove('dark-theme');
 	}
 }
 
@@ -27,8 +29,6 @@ class ColorThemeSwitch extends React.Component {
 		this.state = {
 			useDarkTheme
 		};
-
-		toggleTheme(useDarkTheme);
 
 		this.onToggle = this.onToggle.bind(this);
 	}
