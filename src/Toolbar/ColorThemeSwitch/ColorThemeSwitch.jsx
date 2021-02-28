@@ -1,6 +1,8 @@
 import React from 'react';
 import Icon from 'Icon';
 
+import './ColorThemeSwitch.scss';
+
 class ColorThemeSwitch extends React.Component {
 	constructor(props) {
 		super(props);
@@ -31,9 +33,9 @@ class ColorThemeSwitch extends React.Component {
 		const { useDarkTheme } = this.state;
 
 		return (
-			<div className="color-theme-switch-container">
+			<div className="color-theme-switch__container">
 				<Icon className="sun-icon" name="sun-o" />
-				<input id="color-theme-switch" type="checkbox" checked={useDarkTheme} onChange={this.onToggle} />
+				<input id="color-theme-switch__switch" type="checkbox" checked={useDarkTheme} onChange={this.onToggle} />
 				<Icon className="moon-icon" name="moon-o" />
 			</div>
 		);
