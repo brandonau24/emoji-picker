@@ -25,7 +25,7 @@ describe('ColorThemeSwitch', () => {
 			[false, false]
 		])('sets useDarkTheme state (%s) to value of switch (%s)', (expectedStateValue, switchValue) => {
 			const subject = shallow(<ColorThemeSwitch />);
-			const colorThemeSwitch = subject.find('#color-theme-switch');
+			const colorThemeSwitch = subject.find('.color-theme-switch__input');
 			colorThemeSwitch.simulate('change', { target: { checked: switchValue } });
 
 			expect(subject.state('useDarkTheme')).toBe(expectedStateValue);
@@ -40,7 +40,7 @@ describe('ColorThemeSwitch', () => {
 			[false, false]
 		])('sets user preference (%s) to value of switch (%s)', (expectedUserPref, switchValue) => {
 			const subject = shallow(<ColorThemeSwitch />);
-			const colorThemeSwitch = subject.find('#color-theme-switch');
+			const colorThemeSwitch = subject.find('.color-theme-switch__input');
 
 			colorThemeSwitch.simulate('change', { target: { checked: switchValue } });
 
@@ -58,7 +58,7 @@ describe('ColorThemeSwitch', () => {
 			});
 
 			const subject = shallow(<ColorThemeSwitch />);
-			const colorThemeSwitch = subject.find('#color-theme-switch');
+			const colorThemeSwitch = subject.find('.color-theme-switch__input');
 
 			expect(getItemSpy).toHaveBeenCalledWith('useDarkTheme');
 			expect(colorThemeSwitch.prop('checked')).toBe(expectedSwitchValue);
@@ -75,7 +75,7 @@ describe('ColorThemeSwitch', () => {
 			});
 
 			const subject = shallow(<ColorThemeSwitch />);
-			const colorThemeSwitch = subject.find('#color-theme-switch');
+			const colorThemeSwitch = subject.find('.color-theme-switch__input');
 
 			expect(colorThemeSwitch.prop('checked')).toBe(isOsDark);
 		});
