@@ -18,13 +18,3 @@
 
 	@include light-theme-box-shadow;
 }
-
-
-
-@media (prefers-color-scheme: dark) {
-	.light-theme {
-		.toolbar {
-			@include light-theme-box-shadow;
-		}
-	}
-}

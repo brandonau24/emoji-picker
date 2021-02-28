@@ -36,11 +36,3 @@ $width: 3rem;
 		transform: translateY(0.2rem);
 	}
 }
-
-@media (prefers-color-scheme: dark) {
-	.light-theme {
-		.emoji:hover {
-			@include light-theme-hover;
-		}
-	}
-}
