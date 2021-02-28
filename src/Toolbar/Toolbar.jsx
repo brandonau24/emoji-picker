@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import SearchField from 'Toolbar/SearchField/SearchField';
 import ColorThemeSwitch from 'Toolbar/ColorThemeSwitch/ColorThemeSwitch';
 
-import './Toolbar.scss';
+import './styles/Toolbar.scss';
 
 const Toolbar = ({ onSearchFieldChangeCallback }) => (
 	<div className="toolbar">

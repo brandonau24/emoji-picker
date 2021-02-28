@@ -1,0 +1,9 @@
+@import 'styles/common/dark-colors';
+@import './common/variables.scss';
+
+.dark-theme {
+	.toolbar {
+		background-color: $dark-primary;
+		box-shadow: $toolbar-box-shadow black;
+	}
+}
