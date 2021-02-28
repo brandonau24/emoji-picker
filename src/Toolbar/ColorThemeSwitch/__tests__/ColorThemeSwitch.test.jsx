@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ColorThemeSwitch from '../ColorThemeSwitch';
+import ColorThemeSwitch, { toggleTheme } from '../ColorThemeSwitch';
 
 describe('ColorThemeSwitch', () => {
 	window.matchMedia = jest.fn().mockReturnValue({
@@ -91,6 +91,25 @@ describe('ColorThemeSwitch', () => {
 
 			expect(jsonParseSpy).toHaveBeenCalledWith('false');
 			expect(subject.state('useDarkTheme')).toBeFalsy();
+		});
+
+		describe('#toggleTheme', () => {
+			beforeEach(() => {
+				shallow(<div id="emoji-picker" />);
+			});
+
+			it('adds dark-theme class to emoji-picker when dark theme is used', () => {
+				toggleTheme(true);
+
+				expect(document.querySelector).toHaveBeenCalledWith('#emoji-picker');
+				expect(document.querySelector().classList.add).toHaveBeenCalledWith('dark-theme');
+			});
+
+			it('removes dark-theme class from emoji-picker when light theme used', () => {
+				toggleTheme(false);
+
+				expect(document.querySelector().classList.remove).toHaveBeenCalledWith('dark-theme');
+			});
 		});
 	});
 });

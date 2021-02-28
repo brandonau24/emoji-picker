@@ -3,6 +3,16 @@ import Icon from 'Icon';
 
 import './ColorThemeSwitch.scss';
 
+export function toggleTheme(useDarkTheme) {
+	const emojiPickerClasses = document.querySelector('#emoji-picker').classList;
+
+	if (useDarkTheme) {
+		emojiPickerClasses.add('dark-theme');
+	} else {
+		emojiPickerClasses.remove('dark-theme');
+	}
+}
+
 class ColorThemeSwitch extends React.Component {
 	constructor(props) {
 		super(props);
@@ -18,13 +28,17 @@ class ColorThemeSwitch extends React.Component {
 			useDarkTheme
 		};
 
+		toggleTheme(useDarkTheme);
+
 		this.onToggle = this.onToggle.bind(this);
 	}
 
 	onToggle(event) {
-		this.setState({
-			useDarkTheme: event.target.checked
-		});
+		const useDarkTheme = event.target.checked;
+
+		this.setState({ useDarkTheme });
+
+		toggleTheme(useDarkTheme);
 
 		window.localStorage.setItem('useDarkTheme', event.target.checked);
 	}
