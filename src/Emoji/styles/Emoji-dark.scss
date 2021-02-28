@@ -1,11 +1,9 @@
 @import './common/variables.scss';
 @import 'styles/common/dark-colors.scss';
 
-@media (prefers-color-scheme: dark) {
-	.dark-theme {
-		.emoji:hover {
-			background-color: $dark-secondary;
-			box-shadow: $box-shadow-vals $dark-secondary;
-		}
+.dark-theme {
+	.emoji:hover {
+		background-color: $dark-secondary;
+		box-shadow: $box-shadow-vals $dark-secondary;
 	}
 }
