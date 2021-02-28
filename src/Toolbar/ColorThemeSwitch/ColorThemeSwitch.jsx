@@ -50,9 +50,9 @@ class ColorThemeSwitch extends React.Component {
 
 		return (
 			<div className="color-theme-switch__container">
-				<Icon name="sun-o" />
+				<Icon data-test="sun-icon" name="sun-o" />
 				<input className="color-theme-switch__input" type="checkbox" checked={useDarkTheme} onChange={this.onToggle} />
-				<Icon name="moon-o" />
+				<Icon data-test="moon-icon" name="moon-o" />
 			</div>
 		);
 	}
