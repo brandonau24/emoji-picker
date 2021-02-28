@@ -1,5 +1,6 @@
 import React from 'react';
 import Icon from 'Icon';
+import Toggle from 'Toggle';
 
 import './ColorThemeSwitch.scss';
 
@@ -51,7 +52,7 @@ class ColorThemeSwitch extends React.Component {
 		return (
 			<div className="color-theme-switch__container">
 				<Icon data-test="sun-icon" name="sun-o" />
-				<input className="color-theme-switch__input" type="checkbox" checked={useDarkTheme} onChange={this.onToggle} />
+				<Toggle id="color-theme-switch__Toggle" checked={useDarkTheme} onChange={this.onToggle} />
 				<Icon data-test="moon-icon" name="moon-o" />
 			</div>
 		);

@@ -47,6 +47,7 @@ module.exports = {
 			EmojiGroup: path.resolve(srcPath, 'EmojiGroup/EmojiGroup.jsx'),
 			Emoji: path.resolve(srcPath, 'Emoji/Emoji.jsx'),
 			Icon: path.resolve(srcPath, 'Icon/Icon.jsx'),
+			Toggle: path.resolve(srcPath, 'Toggle/Toggle.jsx'),
 			Toolbar: path.resolve(srcPath, 'Toolbar'),
 			styles: path.resolve(srcPath, 'styles')
 		},

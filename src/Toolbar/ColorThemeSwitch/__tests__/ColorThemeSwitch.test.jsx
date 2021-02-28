@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import Toggle from 'Toggle';
 import ColorThemeSwitch, { toggleTheme } from '../ColorThemeSwitch';
 
 describe('ColorThemeSwitch', () => {
@@ -25,8 +26,8 @@ describe('ColorThemeSwitch', () => {
 			[false, false]
 		])('sets useDarkTheme state (%s) to value of switch (%s)', (expectedStateValue, switchValue) => {
 			const subject = shallow(<ColorThemeSwitch />);
-			const colorThemeSwitch = subject.find('.color-theme-switch__input');
-			colorThemeSwitch.simulate('change', { target: { checked: switchValue } });
+			const toggle = subject.find(Toggle);
+			toggle.simulate('change', { target: { checked: switchValue } });
 
 			expect(subject.state('useDarkTheme')).toBe(expectedStateValue);
 		});
@@ -40,9 +41,9 @@ describe('ColorThemeSwitch', () => {
 			[false, false]
 		])('sets user preference (%s) to value of switch (%s)', (expectedUserPref, switchValue) => {
 			const subject = shallow(<ColorThemeSwitch />);
-			const colorThemeSwitch = subject.find('.color-theme-switch__input');
+			const toggle = subject.find(Toggle);
 
-			colorThemeSwitch.simulate('change', { target: { checked: switchValue } });
+			toggle.simulate('change', { target: { checked: switchValue } });
 
 			expect(setItemSpy).toHaveBeenCalledWith('useDarkTheme', expectedUserPref);
 		});
@@ -58,10 +59,10 @@ describe('ColorThemeSwitch', () => {
 			});
 
 			const subject = shallow(<ColorThemeSwitch />);
-			const colorThemeSwitch = subject.find('.color-theme-switch__input');
+			const toggle = subject.find(Toggle);
 
 			expect(getItemSpy).toHaveBeenCalledWith('useDarkTheme');
-			expect(colorThemeSwitch.prop('checked')).toBe(expectedSwitchValue);
+			expect(toggle.prop('checked')).toBe(expectedSwitchValue);
 		});
 
 		// true = dark theme
@@ -75,9 +76,9 @@ describe('ColorThemeSwitch', () => {
 			});
 
 			const subject = shallow(<ColorThemeSwitch />);
-			const colorThemeSwitch = subject.find('.color-theme-switch__input');
+			const toggle = subject.find(Toggle);
 
-			expect(colorThemeSwitch.prop('checked')).toBe(isOsDark);
+			expect(toggle.prop('checked')).toBe(isOsDark);
 		});
 
 		it('parses boolean string correctly from storage', () => {
