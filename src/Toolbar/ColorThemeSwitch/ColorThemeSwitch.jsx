@@ -9,7 +9,7 @@ export function toggleTheme(useDarkTheme) {
 	if (useDarkTheme) {
 		emojiPickerClasses.add('dark-theme');
 	} else {
-		emojiPickerClasses.remove('dark-theme');
+		emojiPickerClasses.add('light-theme');
 	}
 }
 

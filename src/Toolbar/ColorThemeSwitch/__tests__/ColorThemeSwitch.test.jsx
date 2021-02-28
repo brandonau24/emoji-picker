@@ -105,10 +105,10 @@ describe('ColorThemeSwitch', () => {
 				expect(document.querySelector().classList.add).toHaveBeenCalledWith('dark-theme');
 			});
 
-			it('removes dark-theme class from emoji-picker when light theme used', () => {
+			it('adds light-theme class from emoji-picker when light theme used', () => {
 				toggleTheme(false);
 
-				expect(document.querySelector().classList.remove).toHaveBeenCalledWith('dark-theme');
+				expect(document.querySelector().classList.add).toHaveBeenCalledWith('light-theme');
 			});
 		});
 	});
