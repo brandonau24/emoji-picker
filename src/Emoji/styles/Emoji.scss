@@ -1,12 +1,16 @@
-@import 'styles/common/dark-colors.scss';
+@import './common/variables.scss';
+@import './Emoji-dark.scss';
 
 $height: 3rem;
 $width: 3rem;
-$box-shadow-vals: 0 0 0.3125rem 0.0625rem;
 
 @mixin remove-button-styles() {
 	border: none;
 	background-color: transparent;
+}
+
+@mixin light-theme-hover {
+	box-shadow: $box-shadow-vals black;
 }
 
 .emoji {
@@ -25,7 +29,7 @@ $box-shadow-vals: 0 0 0.3125rem 0.0625rem;
 	&:hover {
 		cursor: pointer;
 		position: relative;
-		box-shadow: $box-shadow-vals black;
+		@include light-theme-hover;
 	}
 
 	&:active {
@@ -34,8 +38,9 @@ $box-shadow-vals: 0 0 0.3125rem 0.0625rem;
 }
 
 @media (prefers-color-scheme: dark) {
-	.emoji:hover {
-		background-color: $dark-secondary;
-		box-shadow: $box-shadow-vals $dark-secondary;
+	.light-theme {
+		.emoji:hover {
+			@include light-theme-hover;
+		}
 	}
 }

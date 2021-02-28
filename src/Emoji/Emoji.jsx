@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './Emoji.scss';
+import './styles/Emoji.scss';
 
 const transformCodepoints = (codepoints) => {
 	const transformedCodepoints = codepoints.split(' ').map((codepoint) => `0x${codepoint}`);
