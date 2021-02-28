@@ -1,11 +1,4 @@
-@import 'styles/common/dark-colors.scss';
-
-@media (prefers-color-scheme: dark) {
-	#emoji-picker {
-		background-color: $dark-primary;
-		color: white;
-	}
-}
+@import './EmojiPicker-dark.scss';
 
 #emoji-picker {
 	.emoji-group {
@@ -17,6 +10,13 @@
 	#footer {
 		width: 100%;
 		text-align: center;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	.light-theme {
+		background-color: white;
+		color: black
 	}
 }
 
