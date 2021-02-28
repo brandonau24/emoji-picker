@@ -1,5 +1,27 @@
+@import 'styles/common/colors.scss';
+
 .color-theme-switch {
 	&__container { 
 		font-size: 2rem;
+
+		.icon-sun-o {
+			color: $sun;
+		}
+	}
+}
+
+.dark-theme {
+	.color-theme-switch {
+		&__container {
+			.icon {
+				&-moon-o {
+					color: $moon;
+				}
+
+				&-sun-o {
+					color: white;
+				}
+			}
+		}
 	}
 }
