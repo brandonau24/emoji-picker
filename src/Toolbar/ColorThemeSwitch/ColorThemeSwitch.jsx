@@ -30,6 +30,8 @@ class ColorThemeSwitch extends React.Component {
 			useDarkTheme
 		};
 
+		toggleTheme(useDarkTheme);
+
 		this.onToggle = this.onToggle.bind(this);
 	}
 
