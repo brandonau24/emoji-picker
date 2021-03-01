@@ -4,7 +4,7 @@
 	&__container { 
 		font-size: 2rem;
 
-		.icon-sun-o {
+		.icon-sun {
 			color: $sun;
 		}
 	}
@@ -14,11 +14,11 @@
 	.color-theme-switch {
 		&__container {
 			.icon {
-				&-moon-o {
+				&-moon {
 					color: $moon;
 				}
 
-				&-sun-o {
+				&-sun {
 					color: white;
 				}
 			}
