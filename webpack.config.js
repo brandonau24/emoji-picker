@@ -7,7 +7,7 @@ const srcPath = path.resolve(__dirname, 'src');
 module.exports = {
 	entry: path.resolve(srcPath, 'index.jsx'),
 	output: {
-		filename: 'emoji-picker.js'
+		filename: 'emoji-picker.[contenthash].js'
 	},
 	module: {
 		rules: [
@@ -62,7 +62,7 @@ module.exports = {
 			template: './template.html'
 		}),
 		new MiniCssExtractPlugin({
-			filename: 'styles.css'
+			filename: 'styles.[contenthash].css'
 		})
 	],
 	devtool: 'source-map',
