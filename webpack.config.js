@@ -4,10 +4,26 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const srcPath = path.resolve(__dirname, 'src');
 
+const devMode = process.env.NODE_ENV === 'development';
+
+const plugins = [
+	new MiniCssExtractPlugin({
+		filename: devMode ? 'styles.[hash].css' : 'styles.[contenthash].css'
+	})
+];
+
+if (devMode) {
+	plugins.push(
+		new HtmlWebpackPlugin({
+			template: './template.html'
+		})
+	)
+}
+
 module.exports = {
-	entry: path.resolve(srcPath, 'index.jsx'),
+	entry: devMode ? path.resolve(srcPath, 'index.dev.jsx') : path.resolve(srcPath, 'EmojiPicker/EmojiPicker.jsx'),
 	output: {
-		filename: 'emoji-picker.[contenthash].js'
+		filename: devMode ? 'emoji-picker.[hash].js' : 'emoji-picker.[contenthash].js'
 	},
 	module: {
 		rules: [
@@ -28,7 +44,7 @@ module.exports = {
 					{
 						loader: MiniCssExtractPlugin.loader,
 						options: {
-							hmr: process.env.NODE_ENV === 'development'
+							hmr: devMode
 						}
 					},
 					'css-loader',
@@ -57,15 +73,8 @@ module.exports = {
 		port: 8080,
 		open: true
 	},
-	plugins: [
-		new HtmlWebpackPlugin({
-			template: './template.html'
-		}),
-		new MiniCssExtractPlugin({
-			filename: 'styles.[contenthash].css'
-		})
-	],
-	devtool: 'source-map',
+	plugins,
+	devtool: devMode ? 'source-map' : 'none',
 	externals: {
 		twemoji: 'twemoji'
 	}
