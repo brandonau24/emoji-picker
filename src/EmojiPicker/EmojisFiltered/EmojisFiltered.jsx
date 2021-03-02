@@ -11,8 +11,14 @@ const EmojisFiltered = ({ data, searchValue, onClickEmoji }) => {
 				subgroup.forEach((emoji) => {
 					const { name, codepoints } = emoji;
 					if (name.toLowerCase().includes(searchValue.toLowerCase())) {
-						// eslint-disable-next-line max-len
-						emojis.push(<Emoji key={name} name={name} codepoints={codepoints} onClick={onClickEmoji} />);
+						emojis.push(
+							<Emoji
+								key={name}
+								name={name}
+								codepoints={codepoints}
+								onClick={onClickEmoji}
+							/>
+						);
 					}
 				});
 			});

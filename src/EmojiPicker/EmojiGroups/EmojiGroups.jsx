@@ -7,8 +7,14 @@ const EmojiGroups = ({ data, onClickEmoji }) => {
 
 	Object.entries(data).forEach(([key, value]) => {
 		if (key !== 'version') {
-			// eslint-disable-next-line max-len
-			emojiGroups.push(<EmojiGroup key={key} groupName={key} group={value} onClick={onClickEmoji} />);
+			emojiGroups.push(
+				<EmojiGroup
+					key={key}
+					groupName={key}
+					group={value}
+					onClick={onClickEmoji}
+				/>
+			);
 		}
 	});
 
