@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Icon from 'Icon';
 import Toggle from 'Toggle';
 
@@ -16,47 +16,30 @@ export function toggleTheme(useDarkTheme) {
 	}
 }
 
-class ColorThemeSwitch extends React.Component {
-	constructor(props) {
-		super(props);
+const ColorThemeSwitch = () => {
+	let userThemePref = window.matchMedia('(prefers-color-scheme: dark)').matches;
+	const storageValue = JSON.parse(window.localStorage.getItem('useDarkTheme'));
 
-		let useDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+	if (storageValue !== null) {
+		userThemePref = storageValue;
+	}
 
-		const storageValue = JSON.parse(window.localStorage.getItem('useDarkTheme'));
-		if (storageValue !== null) {
-			useDarkTheme = storageValue;
-		}
+	const [useDarkTheme, setUseDarkTheme] = useState(userThemePref);
 
-		this.state = {
-			useDarkTheme
-		};
-
+	useEffect(() => {
 		toggleTheme(useDarkTheme);
+		localStorage.setItem('useDarkTheme', useDarkTheme);
+	});
 
-		this.onToggle = this.onToggle.bind(this);
-	}
+	const onToggleChange = (event) => setUseDarkTheme(event.target.checked);
 
-	onToggle(event) {
-		const useDarkTheme = event.target.checked;
-
-		this.setState({ useDarkTheme });
-
-		toggleTheme(useDarkTheme);
-
-		window.localStorage.setItem('useDarkTheme', event.target.checked);
-	}
-
-	render() {
-		const { useDarkTheme } = this.state;
-
-		return (
-			<div className="color-theme-switch__container">
-				<Icon data-test="sun-icon" name="sun" />
-				<Toggle id="color-theme-switch__Toggle" checked={useDarkTheme} onChange={this.onToggle} />
-				<Icon data-test="moon-icon" name="moon" />
-			</div>
-		);
-	}
-}
+	return (
+		<div className="color-theme-switch__container">
+			<Icon data-test="sun-icon" name="sun" />
+			<Toggle id="color-theme-switch__Toggle" checked={useDarkTheme} onChange={onToggleChange} />
+			<Icon data-test="moon-icon" name="moon" />
+		</div>
+	);
+};
 
 export default ColorThemeSwitch;
