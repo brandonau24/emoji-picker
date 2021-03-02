@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import twemoji from 'twemoji';
 
@@ -17,51 +17,39 @@ const copyEmoji = (e) => {
 	document.body.removeChild(fakeTextarea);
 };
 
-class EmojiPicker extends React.Component {
-	constructor(props) {
-		super(props);
+const EmojiPicker = ({ data }) => {
+	const [searchValue, setSearchValue] = useState('');
+	const { version } = data;
+	let emojiPickerBody;
 
-		this.state = {
-			searchValue: ''
-		};
-
-		this.onSearchValueChange = this.onSearchValueChange.bind(this);
+	if (!searchValue) {
+		emojiPickerBody = <EmojiGroups data={data} onClickEmoji={copyEmoji} />;
+	} else {
+		emojiPickerBody = (
+			<EmojisFiltered
+				data={data}
+				searchValue={searchValue}
+				onClickEmoji={copyEmoji}
+			/>
+		);
 	}
 
-	componentDidUpdate() {
+	useEffect(() => {
 		twemoji.parse(document.querySelector('#emoji-picker'), {
 			folder: 'svg',
 			ext: '.svg',
 			className: 'emoji-img'
 		});
-	}
+	});
 
-	onSearchValueChange(searchValue) {
-		this.setState({ searchValue });
-	}
-
-	render() {
-		const { data } = this.props;
-		const { searchValue } = this.state;
-		const { version } = data;
-		let emojiPickerBody;
-
-		if (!searchValue) {
-			emojiPickerBody = <EmojiGroups data={data} onClickEmoji={copyEmoji} />;
-		} else {
-			// eslint-disable-next-line max-len
-			emojiPickerBody = <EmojisFiltered data={data} searchValue={searchValue} onClickEmoji={copyEmoji} />;
-		}
-
-		return (
-			<>
-				<Toolbar onSearchFieldChangeCallback={this.onSearchValueChange} />
-				{emojiPickerBody}
-				<div id="footer"><strong>{`Built with Unicode Emoji v${version}`}</strong></div>
-			</>
-		);
-	}
-}
+	return (
+		<>
+			<Toolbar onSearchFieldChangeCallback={setSearchValue} />
+			{emojiPickerBody}
+			<div id="footer"><strong>{`Built with Unicode Emoji v${version}`}</strong></div>
+		</>
+	);
+};
 
 EmojiPicker.propTypes = {
 	data: PropTypes.objectOf(PropTypes.oneOfType([

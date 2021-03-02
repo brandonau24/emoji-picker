@@ -6,6 +6,7 @@ module.exports = {
 	},
 	extends: [
 		'plugin:react/recommended',
+		'plugin:react-hooks/recommended',
 		'airbnb',
 	],
 	parserOptions: {
@@ -23,7 +24,7 @@ module.exports = {
 		indent: ['error', 'tab'],
 		'linebreak-style': 'off',
 		'no-tabs': 'off',
-		'react/jsx-indent': ['error', 'tab']
+		'react/jsx-indent': [4, 'tab']
 	},
 	settings: {
 		'import/resolver': 'webpack'
