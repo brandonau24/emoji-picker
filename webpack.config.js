@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const srcPath = path.resolve(__dirname, 'src');
 
@@ -9,7 +10,8 @@ const devMode = process.env.NODE_ENV === 'development';
 const plugins = [
 	new MiniCssExtractPlugin({
 		filename: devMode ? 'styles.[hash].css' : 'styles.[contenthash].css'
-	})
+	}),
+	new CleanWebpackPlugin()
 ];
 
 if (devMode) {
