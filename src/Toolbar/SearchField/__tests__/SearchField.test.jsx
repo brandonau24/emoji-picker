@@ -12,7 +12,7 @@ describe('SearchField', () => {
 	});
 
 	it('changes value of input field on every keystroke', () => {
-		subject.instance().onChange({
+		subject.find('input').simulate('change', {
 			target: {
 				value: 'new value'
 			}
@@ -22,7 +22,7 @@ describe('SearchField', () => {
 	});
 
 	it('calls callback with search value', () => {
-		subject.instance().onChange({
+		subject.find('input').simulate('change', {
 			target: {
 				value: 'new value'
 			}
