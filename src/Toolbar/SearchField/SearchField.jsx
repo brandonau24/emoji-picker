@@ -11,10 +11,12 @@ const SearchField = ({ onChangeCallback }) => {
 		onChangeCallback(searchValue);
 	});
 
+	const onSearchFieldChange = (event) => setSearchValue(event.target.value);
+
 	return (
 		<div className="search-field">
 			<Icon name="search" />
-			<input type="text" value={searchValue} onChange={(event) => setSearchValue(event.target.value)} placeholder="Search for an emoji" />
+			<input type="text" value={searchValue} onChange={onSearchFieldChange} placeholder="Search for an emoji" />
 		</div>
 	);
 };
