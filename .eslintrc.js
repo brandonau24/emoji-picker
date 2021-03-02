@@ -24,7 +24,8 @@ module.exports = {
 		indent: ['error', 'tab'],
 		'linebreak-style': 'off',
 		'no-tabs': 'off',
-		'react/jsx-indent': [4, 'tab']
+		'react/jsx-indent': ['error', 'tab'],
+		'react/jsx-indent-props': ['error', 'tab']
 	},
 	settings: {
 		'import/resolver': 'webpack'
