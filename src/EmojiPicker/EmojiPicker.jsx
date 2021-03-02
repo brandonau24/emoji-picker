@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
 import twemoji from 'twemoji';
 
@@ -34,7 +34,7 @@ const EmojiPicker = ({ data }) => {
 		);
 	}
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		twemoji.parse(document.querySelector('#emoji-picker'), {
 			folder: 'svg',
 			ext: '.svg',

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import Icon from 'Icon';
 import Toggle from 'Toggle';
 
@@ -26,7 +26,7 @@ const ColorThemeSwitch = () => {
 
 	const [useDarkTheme, setUseDarkTheme] = useState(userThemePref);
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		toggleTheme(useDarkTheme);
 		localStorage.setItem('useDarkTheme', useDarkTheme);
 	});
