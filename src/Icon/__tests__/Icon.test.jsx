@@ -1,12 +1,12 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen} from '@testing-library/react';
 
 import Icon from '../Icon';
 
 describe('Icon', () => {
 	it('takes name prop and prefixes icon for CSS class', () => {
-		const subject = shallow(<Icon name="foo" />);
+		render(<Icon name="foo" title="foo" />);
 
-		expect(subject.find('.icon-foo')).toHaveLength(1);
+		expect(screen.getByTitle('foo')).toHaveClass('icon-foo');
 	});
 });
