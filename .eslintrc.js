@@ -7,6 +7,8 @@ module.exports = {
 	extends: [
 		'plugin:react/recommended',
 		'plugin:react-hooks/recommended',
+		'plugin:jsx-a11y/recommended',
+		'plugin:testing-library/react',
 		'airbnb',
 	],
 	parserOptions: {
@@ -25,7 +27,8 @@ module.exports = {
 		'linebreak-style': 'off',
 		'no-tabs': 'off',
 		'react/jsx-indent': ['error', 'tab'],
-		'react/jsx-indent-props': ['error', 'tab']
+		'react/jsx-indent-props': ['error', 'tab'],
+		'import/no-extraneous-dependencies': ['error', { 'devDependencies': ['**/*.test.js?(x)', 'setupFile.js'] }]
 	},
 	settings: {
 		'import/resolver': 'webpack'

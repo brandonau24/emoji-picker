@@ -28,16 +28,16 @@ const ColorThemeSwitch = () => {
 
 	useLayoutEffect(() => {
 		toggleTheme(useDarkTheme);
-		localStorage.setItem('useDarkTheme', useDarkTheme);
+		window.localStorage.setItem('useDarkTheme', useDarkTheme);
 	});
 
 	const onToggleChange = (event) => setUseDarkTheme(event.target.checked);
 
 	return (
 		<div className="color-theme-switch__container">
-			<Icon data-test="sun-icon" name="sun" />
+			<Icon name="sun" title="Light Theme" />
 			<Toggle id="color-theme-switch__Toggle" checked={useDarkTheme} onChange={onToggleChange} />
-			<Icon data-test="moon-icon" name="moon" />
+			<Icon name="moon" title="Dark Theme" />
 		</div>
 	);
 };
