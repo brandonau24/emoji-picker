@@ -34,30 +34,6 @@ const data = {
 	}
 };
 
-test('emoji groups are rendered when search field is empty', () => {
-	render(<EmojiPicker data={data} />);
-
-	return screen.findAllByRole('heading', { level: 2 }).then((headings) => {
-		expect(headings.length).toBe(3);
-	});
-});
-
-test('renders emojis when search field is not empty ignoring casing', () => {
-	render(<EmojiPicker data={data} />);
-
-	const searchField = screen.getByRole('textbox');
-	userEvent.type(searchField, 'fACe');
-
-	return screen.findAllByRole('button').then((emojis) => {
-		expect(emojis.length).toBe(2);
-		expect(screen.queryByRole('heading')).not.toBeInTheDocument();
-
-		emojis.forEach((emoji) => {
-			expect(emoji).toHaveAttribute('title', expect.stringContaining('face'));
-		});
-	});
-});
-
 test('footer is rendered with Unicode version', () => {
 	render(<EmojiPicker data={data} />);
 

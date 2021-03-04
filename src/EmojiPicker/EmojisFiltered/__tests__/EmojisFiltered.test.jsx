@@ -35,5 +35,10 @@ test('renders emojis where the name includes search value ignoring case', () => 
 
 	return screen.findAllByRole('button').then((emojis) => {
 		expect(emojis.length).toBe(2);
+		expect(screen.queryByRole('heading')).not.toBeInTheDocument();
+
+		emojis.forEach((emoji) => {
+			expect(emoji).toHaveAttribute('title', expect.stringContaining('face'));
+		});
 	});
 });
