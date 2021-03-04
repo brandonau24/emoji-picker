@@ -2,6 +2,8 @@
 
 .color-theme-switch {
 	&__container { 
+		display: flex;
+		justify-content: end;
 		font-size: 2rem;
 
 		.icon-sun {

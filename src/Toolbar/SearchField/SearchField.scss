@@ -3,11 +3,11 @@
 .search-field {
 	display: flex;
 	align-items: center;
-	width: 35%;
+	flex-grow: 1;
 	padding: 1rem;
 	border: .125rem solid black;
 	border-radius: 3rem;
-	margin: 0 auto;
+	margin-right: 2rem;
 
 	.icon-search {
 		margin-right: .5rem;
