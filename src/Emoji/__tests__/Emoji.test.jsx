@@ -1,29 +1,23 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Emoji from 'Emoji';
 
-describe('Emoji', () => {
-	const onClick = jest.fn();
-	let subject;
+test('component value is set to emoji', () => {
+	const emojiName = 'grinning face';
+	render(<Emoji codepoints="1F600" name={emojiName} onClick={jest.fn()} />);
 
-	beforeEach(() => {
-		subject = shallow(<Emoji codepoints="1F600" name="grinning face" onClick={onClick} />);
-	});
+	const emojiButton = screen.getByRole('button');
 
-	it('has value set to codepoints', () => {
-		expect(subject.text()).toBe('😀');
-		expect(subject.prop('value')).toBe('😀');
-	});
+	expect(emojiButton).toHaveValue('😀');
+	expect(emojiButton).toHaveAttribute('title', expect.stringMatching('grinning face'));
+});
 
-	it('has alt. text set to the name of the emoji', () => {
-		expect(subject.prop('alt')).toBe('grinning face');
-	});
+test('callback is called when Emoji is clicked', () => {
+	const callback = jest.fn();
+	render(<Emoji codepoints="1F600" name="grinning face" onClick={callback} />);
 
-	it('has title prop set to the name of the emoji', () => {
-		expect(subject.prop('title')).toBe('grinning face');
-	});
+	userEvent.click(screen.getByRole('button'));
 
-	it('binds click handler from props', () => {
-		expect(subject.prop('onClick')).toBe(onClick);
-	});
+	expect(callback).toHaveBeenCalledTimes(1);
 });

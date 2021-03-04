@@ -12,7 +12,7 @@ const transformCodepoints = (codepoints) => {
 const Emoji = ({ codepoints, name, onClick }) => {
 	const transformedCodepoints = transformCodepoints(codepoints);
 
-	return <button type="button" className="emoji" title={name} alt={name} value={transformedCodepoints} onClick={onClick}>{transformedCodepoints}</button>;
+	return <button type="button" className="emoji" title={name} value={transformedCodepoints} onClick={onClick}>{transformedCodepoints}</button>;
 };
 
 Emoji.propTypes = {
