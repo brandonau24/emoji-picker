@@ -1,16 +1,15 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import EmojiGroup from 'EmojiGroup';
+import { render, screen } from '@testing-library/react';
 import EmojiGroups from '../EmojiGroups';
 
-describe('EmojiGroups', () => {
+test('creates emoji groups for top level groups', () => {
 	const data = {
 		version: '13.0',
 		'group-1': {
 			'subgroup-1': [
 				{
 					name: 'grinning face',
-					codepoints: 'codepoints'
+					codepoints: '1F600'
 				}
 			]
 		},
@@ -18,7 +17,7 @@ describe('EmojiGroups', () => {
 			'subgroup-2': [
 				{
 					name: 'smiley face',
-					codepoints: 'codepoints'
+					codepoints: '1F600'
 				}
 			]
 		},
@@ -26,15 +25,13 @@ describe('EmojiGroups', () => {
 			'subgroup-3': [
 				{
 					name: 'heart',
-					codepoints: 'codepoints'
+					codepoints: '1F600'
 				}
 			]
 		}
 	};
 
-	it('creates emoji groups for top level groups', () => {
-		const subject = shallow(<EmojiGroups data={data} onClickEmoji={jest.fn()} />);
+	render(<EmojiGroups data={data} onClickEmoji={jest.fn()} />);
 
-		expect(subject.find(EmojiGroup)).toHaveLength(3);
-	});
+	return screen.findAllByRole('heading', { level: 2 }).then((headings) => expect(headings.length).toBe(3));
 });
