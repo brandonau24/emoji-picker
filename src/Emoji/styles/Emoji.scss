@@ -1,8 +1,8 @@
 @import './common/variables.scss';
 @import './Emoji-dark.scss';
 
-$height: 3rem;
-$width: 3rem;
+$height: 2rem;
+$width: 2rem;
 
 @mixin remove-button-styles() {
 	border: none;
@@ -15,14 +15,12 @@ $width: 3rem;
 
 .emoji {
 	@include remove-button-styles();
-	height: $height + .75rem;
-	width: $width + .75rem;
+	height: $height;
+	width: $width;
 	margin: 1rem 1rem;
 	padding: 0;
 
 	&-img {
-		max-height: $height;
-		max-width: $width;
 		vertical-align: middle;
 	}
 
