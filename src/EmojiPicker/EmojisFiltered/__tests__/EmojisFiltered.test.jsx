@@ -1,16 +1,15 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import Emoji from 'Emoji';
+import { render, screen } from '@testing-library/react';
 import EmojisFiltered from '../EmojisFiltered';
 
-describe('EmojisFiltered', () => {
+test('renders emojis where the name includes search value ignoring case', () => {
 	const data = {
 		version: '13.0',
 		'group-1': {
 			'subgroup-1': [
 				{
 					name: 'grinning face',
-					codepoints: 'codepoints'
+					codepoints: '1F600'
 				}
 			]
 		},
@@ -18,7 +17,7 @@ describe('EmojisFiltered', () => {
 			'subgroup-2': [
 				{
 					name: 'smiley face',
-					codepoints: 'codepoints'
+					codepoints: '1F600'
 				}
 			]
 		},
@@ -26,15 +25,15 @@ describe('EmojisFiltered', () => {
 			'subgroup-3': [
 				{
 					name: 'heart',
-					codepoints: 'codepoints'
+					codepoints: '1F600'
 				}
 			]
 		}
 	};
 
-	it('renders emojis that include the search value (case insensitive)', () => {
-		const subject = shallow(<EmojisFiltered data={data} searchValue="face" onClickEmoji={jest.fn()} />);
+	render(<EmojisFiltered data={data} onClickEmoji={jest.fn()} searchValue="FACE" />);
 
-		expect(subject.find(Emoji)).toHaveLength(2);
+	return screen.findAllByRole('button').then((emojis) => {
+		expect(emojis.length).toBe(2);
 	});
 });
