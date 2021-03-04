@@ -46,36 +46,3 @@ test('change event callback is called with search field value', () => {
 	userEvent.type(searchField, '{selectall}{backspace}');
 	expect(callback).toHaveBeenCalledWith('');
 });
-
-// describe('SearchField', () => {
-// 	const callback = jest.fn();
-// 	let subject;
-
-// 	beforeEach(() => {
-// 		subject = shallow(<SearchField onChangeCallback={callback} />);
-// 	});
-
-// 	it('changes value of input field on every keystroke', () => {
-// 		subject.find('input').simulate('change', {
-// 			target: {
-// 				value: 'new value'
-// 			}
-// 		});
-
-// 		expect(subject.find('input').prop('value')).toBe('new value');
-// 	});
-
-// 	it('calls callback with search value', () => {
-// 		subject.find('input').simulate('change', {
-// 			target: {
-// 				value: 'new value'
-// 			}
-// 		});
-
-// 		expect(callback).toHaveBeenCalledWith('new value');
-// 	});
-
-// 	it('renders a search icon', () => {
-// 		expect(subject.find(Icon).prop('name')).toBe('search');
-// 	});
-// });
