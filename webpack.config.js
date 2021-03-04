@@ -23,7 +23,7 @@ if (devMode) {
 }
 
 module.exports = {
-	entry: devMode ? path.resolve(srcPath, 'index.dev.jsx') : path.resolve(srcPath, 'EmojiPicker/EmojiPicker.jsx'),
+	entry: devMode ? path.resolve(srcPath, 'index.dev.jsx') : path.resolve(srcPath, 'index.jsx'),
 	output: {
 		filename: devMode ? 'emoji-picker.[hash].js' : 'emoji-picker.[contenthash].js'
 	},
