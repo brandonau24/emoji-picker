@@ -1,33 +1,31 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Toggle from 'Toggle';
 
-describe('Toggle', () => {
-	it('sets checkbox to checked when prop is true', () => {
-		const subject = shallow(<Toggle id="id" checked onChange={jest.fn()} />);
+test('sets checkbox to true when prop passed in is true', () => {
+	render(<Toggle id="id" checked onChange={jest.fn()} />);
 
-		expect(subject.find('#id').prop('checked')).toBeTruthy();
-	});
+	expect(screen.getByRole('checkbox')).toBeChecked();
+});
 
-	it('defaults to false when checked prop is not given', () => {
-		const subject = shallow(<Toggle id="id" onChange={jest.fn()} />);
+test('checkbox is not checked when checked prop is not given', () => {
+	render(<Toggle id="id" onChange={jest.fn()} />);
 
-		expect(subject.find('#id').prop('checked')).toBeFalsy();
-	});
+	expect(screen.getByRole('checkbox')).not.toBeChecked();
+});
 
-	it('sets label for toggle to id prop value', () => {
-		const subject = shallow(<Toggle id="id" onChange={jest.fn()} />);
+test('label is associated to checkbox', () => {
+	render(<Toggle id="id" onChange={jest.fn()} />);
 
-		expect(subject.find('.switch').prop('htmlFor')).toBe('id');
-		expect(subject.find('#id')).toHaveLength(1);
-	});
+	expect(screen.getByTestId('toggle-label')).toHaveAttribute('for', expect.stringMatching('id'));
+});
 
-	it('calls onChange callback passed in as props when change event occurs', () => {
-		const callback = jest.fn();
-		const subject = shallow(<Toggle id="id" onChange={callback} />);
+test('callback is called when checkbox is clicked', () => {
+	const callback = jest.fn();
+	render(<Toggle id="id" onChange={callback} />);
 
-		subject.find('#id').simulate('change');
+	userEvent.click(screen.getByRole('checkbox'));
 
-		expect(callback).toHaveBeenCalledTimes(1);
-	});
+	expect(callback).toHaveBeenCalledTimes(1);
 });
