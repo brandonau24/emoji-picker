@@ -15,12 +15,14 @@ $width: 2rem;
 
 .emoji {
 	@include remove-button-styles();
-	height: $height;
-	width: $width;
-	margin: 1rem 1rem;
+	height: $height + 0.75rem;
+	width: $width + 0.75rem;
+	margin: 0.5rem 0.5rem;
 	padding: 0;
 
 	&-img {
+		max-height: $height;
+		max-height: $width;
 		vertical-align: middle;
 	}
 
