@@ -1,108 +1,93 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import twemoji from 'twemoji';
 import EmojiPicker from 'EmojiPicker';
-import EmojiGroups from '../EmojiGroups/EmojiGroups';
-import EmojisFiltered from '../EmojisFiltered/EmojisFiltered';
 
-describe('EmojiPicker', () => {
-	const data = {
-		version: '13.0',
-		'group-1': {
-			'subgroup-1': [
-				{
-					name: 'grinning face',
-					codepoints: 'codepoints'
-				}
-			]
-		},
-		'group-2': {
-			'subgroup-2': [
-				{
-					name: 'smiley face',
-					codepoints: 'codepoints'
-				}
-			]
-		},
-		'group-3': {
-			'subgroup-3': [
-				{
-					name: 'heart',
-					codepoints: 'codepoints'
-				}
-			]
-		}
-	};
+window.matchMedia = jest.fn().mockReturnValue({ matches: false });
 
-	let subject;
+const data = {
+	version: '13.0',
+	'group-1': {
+		'subgroup-1': [
+			{
+				name: 'grinning face',
+				codepoints: '1F600'
+			}
+		]
+	},
+	'group-2': {
+		'subgroup-2': [
+			{
+				name: 'smiley face',
+				codepoints: '1F600'
+			}
+		]
+	},
+	'group-3': {
+		'subgroup-3': [
+			{
+				name: 'heart',
+				codepoints: '1F600'
+			}
+		]
+	}
+};
 
-	beforeEach(() => {
-		subject = shallow(<EmojiPicker data={data} />);
+test('emoji groups are rendered when search field is empty', () => {
+	render(<EmojiPicker data={data} />);
+
+	return screen.findAllByRole('heading', { level: 2 }).then((headings) => {
+		expect(headings.length).toBe(3);
 	});
+});
 
-	it('creates EmojiGroups for top level groups when search value is empty', () => {
-		expect(subject.find(EmojiGroups)).toHaveLength(1);
-	});
+test('renders emojis when search field is not empty ignoring casing', () => {
+	render(<EmojiPicker data={data} />);
 
-	it('creates footer with Unicode version', () => {
-		const footer = subject.find('#footer');
+	const searchField = screen.getByRole('textbox');
+	userEvent.type(searchField, 'fACe');
 
-		expect(footer.text()).toBe(`Built with Unicode Emoji v${data.version}`);
-	});
+	return screen.findAllByRole('button').then((emojis) => {
+		expect(emojis.length).toBe(2);
+		expect(screen.queryByRole('heading')).not.toBeInTheDocument();
 
-	describe('#copyEmoji', () => {
-		it('copies emoji to clipboard', () => {
-			window.matchMedia = jest.fn().mockReturnValue({
-				matches: false
-			});
-
-			const createElementSpy = jest.spyOn(document, 'createElement');
-			const appendChildSpy = jest.spyOn(document.body, 'appendChild');
-			const removeChildSpy = jest.spyOn(document.body, 'removeChild');
-			const execCommandSpy = jest.spyOn(document, 'execCommand');
-
-			const emojiData = {
-				version: '13.0',
-				'group-1': {
-					'subgroup-1': [
-						{
-							codepoints: '1F600',
-							name: 'grinning face'
-						}
-					]
-				},
-			};
-
-			subject = mount(<EmojiPicker data={emojiData} />);
-			subject.find('.emoji').simulate('click');
-
-			expect(createElementSpy).toBeCalledWith('textarea');
-			expect(appendChildSpy).toBeCalled();
-			expect(removeChildSpy).toBeCalled();
-			expect(execCommandSpy).toBeCalledWith('copy');
+		emojis.forEach((emoji) => {
+			expect(emoji).toHaveAttribute('title', expect.stringContaining('face'));
 		});
 	});
+});
 
-	// This test needs to be before any state updates
-	// The goal of this test is to ensure the parse function is called once when state updates
-	// However, putting this test after the one below it shows 2 calls, not one
-	// For reasons unknown, the instance of subject is not different between the 2 tests
-	// which means state changes between tests are present
-	it('parses with twemoji after component is updated', () => {
-		subject.setState({ searchValue: 'foo' });
+test('footer is rendered with Unicode version', () => {
+	render(<EmojiPicker data={data} />);
 
-		expect(twemoji.parse).toHaveBeenCalledTimes(1);
-	});
+	expect(screen.getByRole('contentinfo')).toHaveTextContent(/Unicode Emoji v13\.0/);
+});
 
-	it('sets state of search field value from callback', () => {
-		subject.instance().onSearchValueChange('new value');
+test('clicking emoji copies to clipboard', () => {
+	const createElementSpy = jest.spyOn(document, 'createElement');
+	const appendChildSpy = jest.spyOn(document.body, 'appendChild');
+	const removeChildSpy = jest.spyOn(document.body, 'removeChild');
+	const execCommandSpy = jest.spyOn(document, 'execCommand');
 
-		expect(subject.state('searchValue')).toBe('new value');
-	});
+	render(<EmojiPicker data={data} />);
 
-	it('renders emojis that include the search value (case insensitive)', () => {
-		subject.setState({ searchValue: 'face' });
+	const smileyFaceEmoji = screen.getByTitle('smiley face');
+	userEvent.click(smileyFaceEmoji);
 
-		expect(subject.find(EmojisFiltered)).toHaveLength(1);
-	});
+	expect(createElementSpy).toBeCalledWith('textarea');
+	expect(appendChildSpy).toBeCalled();
+	expect(removeChildSpy).toBeCalled();
+	expect(execCommandSpy).toBeCalledWith('copy');
+});
+
+test('twemoji parses DOM on state updates', () => {
+	render(<EmojiPicker data={data} />);
+
+	const searchField = screen.getByRole('textbox');
+	userEvent.type(searchField, 'face');
+	userEvent.type(searchField, '{selectall}');
+	userEvent.type(searchField, '{backspace}');
+
+	expect(twemoji.parse).toBeCalled();
 });

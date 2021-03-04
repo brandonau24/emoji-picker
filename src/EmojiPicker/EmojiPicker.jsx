@@ -46,7 +46,7 @@ const EmojiPicker = ({ data }) => {
 		<div id="emoji-picker">
 			<Toolbar onSearchFieldChangeCallback={setSearchValue} />
 			{emojiPickerBody}
-			<div id="footer"><strong>{`Built with Unicode Emoji v${version}`}</strong></div>
+			<div role="contentinfo" id="footer"><strong>{`Built with Unicode Emoji v${version}`}</strong></div>
 		</div>
 	);
 };
