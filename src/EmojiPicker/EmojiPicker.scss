@@ -1,6 +1,9 @@
 @import './EmojiPicker-dark.scss';
 
 #emoji-picker {
+	height: 100%;
+	width: 100%;
+
 	.emoji-group {
 		&:nth-child(2) {
 			padding-top: 0;
