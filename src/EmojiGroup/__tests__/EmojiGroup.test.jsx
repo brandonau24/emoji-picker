@@ -1,40 +1,36 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import EmojiGroup from 'EmojiGroup';
-import Emoji from 'Emoji';
 
-describe('EmojiGroup', () => {
-	const groupName = 'Group 1';
-	const group = {
-		subgroup: [
-			{
-				name: 'emoji1',
-				codepoints: '111'
-			},
-			{
-				name: 'emoji',
-				codepoints: '222'
-			},
-			{
-				name: 'emoji',
-				codepoints: '333'
-			}
-		]
-	};
-	const onClick = jest.fn();
+const groupName = 'Group 1';
+const group = {
+	subgroup: [
+		{
+			name: 'emoji1',
+			codepoints: '111'
+		},
+		{
+			name: 'emoji',
+			codepoints: '222'
+		},
+		{
+			name: 'emoji',
+			codepoints: '333'
+		}
+	]
+};
+const onClick = jest.fn();
 
-	let subject;
+test('renders header with group name', () => {
+	render(<EmojiGroup groupName={groupName} group={group} onClick={onClick} />);
 
-	beforeEach(() => {
-		subject = shallow(<EmojiGroup groupName={groupName} group={group} onClick={onClick} />);
-	});
+	expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(new RegExp(`^${groupName}$`));
+});
 
-	it('renders header with group name', () => {
-		expect(subject.find('.emoji-group-name').text()).toBe(groupName);
-	});
+test('renders emojis in a subgroup', () => {
+	render(<EmojiGroup groupName={groupName} group={group} onClick={onClick} />);
 
-	it('renders emojis in a subgroup', () => {
-		const emojis = subject.find(Emoji);
-		expect(emojis).toHaveLength(group.subgroup.length);
+	screen.findAllByRole('button').then((emojis) => {
+		expect(emojis.length).toBe(group.subgroup.length);
 	});
 });
