@@ -15,7 +15,7 @@ const SearchField = ({ onChangeCallback }) => {
 
 	return (
 		<div className="search-field">
-			<Icon name="search" />
+			<Icon name="search" title="Search for an emoji" />
 			<input type="text" value={searchValue} onChange={onSearchFieldChange} placeholder="Search for an emoji" />
 		</div>
 	);
