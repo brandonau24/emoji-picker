@@ -1,20 +1,30 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 
-import SearchField from 'Toolbar/SearchField/SearchField';
-import ColorThemeSwitch from 'Toolbar/ColorThemeSwitch/ColorThemeSwitch';
 import Toolbar from '../Toolbar';
 
-describe('Toolbar', () => {
-	it('renders a SearchField as a child of the toolbar', () => {
-		const subject = shallow(<Toolbar onSearchFieldChangeCallback={jest.fn()} />);
+window.matchMedia = jest.fn().mockReturnValue({
+	matches: false
+});
 
-		expect(subject.find('.toolbar').find(SearchField)).toHaveLength(1);
+test('renders a SearchField as a child of the toolbar', () => {
+	const div = document.createElement('div');
+	div.id = 'emoji-picker';
+
+	render(<Toolbar onSearchFieldChangeCallback={jest.fn()} />, {
+		container: document.body.appendChild(div)
 	});
 
-	it('renders a ColorThemeSwitch as a child of the toolbar', () => {
-		const subject = shallow(<Toolbar onSearchFieldChangeCallback={jest.fn()} />);
+	return screen.findByRole('textbox').then((searchField) => expect(searchField).toBeVisible());
+});
 
-		expect(subject.find('.toolbar').find(ColorThemeSwitch)).toHaveLength(1);
+test('renders a ColorThemeSwitch as a child of the toolbar', () => {
+	const div = document.createElement('div');
+	div.id = 'emoji-picker';
+
+	render(<Toolbar onSearchFieldChangeCallback={jest.fn()} />, {
+		container: document.body.appendChild(div)
 	});
+
+	return screen.findByRole('checkbox').then((colorThemeSwitch) => expect(colorThemeSwitch).toBeVisible());
 });
