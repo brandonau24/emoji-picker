@@ -97,7 +97,6 @@ module.exports = {
 	plugins: buildPlugins,
 	devtool: devMode ? 'source-map' : 'none',
 	externals: {
-		twemoji: 'twemoji',
-		react: 'react'
+		react: 'React'
 	}
 };
