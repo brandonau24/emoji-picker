@@ -1,8 +1,8 @@
 @import './EmojiPicker-dark.scss';
 
 #emoji-picker {
-	height: 100%;
-	width: 100%;
+	min-height: 100%;
+	min-width: 100%;
 
 	.emoji-group {
 		&:nth-child(2) {
@@ -11,7 +11,10 @@
 	}
 
 	#footer {
+		position: sticky;
+		top: 100%;
 		width: 100%;
 		text-align: center;
+		padding-bottom: 0.5rem;
 	}
 }
