@@ -18,6 +18,7 @@ The project uses [twemoji](https://github.com/twitter/twemoji) to render the emo
 You can use any set of emojis you want, but they have to be in the shape of the following:
 
 ```
+{
 	"Group name": {
 		"subgroup-1": [
 			{
@@ -30,7 +31,7 @@ You can use any set of emojis you want, but they have to be in the shape of the 
 	},
 
 	// rest of groups...
-
+}
 ```
 
 See [the test data file](./src/emoji-data.json) for a complete set. Feel free to take it or use [emoji-data-file-parser](https://github.com/brandonau24/emoji-data-file-parser) to generate one for your own.
