@@ -7,19 +7,23 @@ const srcPath = path.resolve(__dirname, 'src');
 
 const devMode = process.env.NODE_ENV === 'development';
 
-const plugins = [
+const buildPlugins = [
 	new MiniCssExtractPlugin({
 		filename: devMode ? 'styles.[hash].css' : 'styles.[contenthash].css'
 	}),
 	new CleanWebpackPlugin()
 ];
 
+const postcssPlugins = ['autoprefixer', 'postcss-preset-env'];
+
 if (devMode) {
-	plugins.push(
+	buildPlugins.push(
 		new HtmlWebpackPlugin({
 			template: './template.html'
 		})
 	)
+
+	postcssPlugins.push('cssnano');
 }
 
 module.exports = {
@@ -50,6 +54,14 @@ module.exports = {
 						}
 					},
 					'css-loader',
+					{
+						loader: 'postcss-loader',
+						options: {
+							postcssOptions: {
+								plugins: postcssPlugins
+							}
+						}
+					},
 					'sass-loader'
 				]
 			},
@@ -82,7 +94,7 @@ module.exports = {
 		port: 8080,
 		open: true
 	},
-	plugins,
+	plugins: buildPlugins,
 	devtool: devMode ? 'source-map' : 'none',
 	externals: {
 		twemoji: 'twemoji'
