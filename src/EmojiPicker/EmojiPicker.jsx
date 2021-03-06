@@ -1,10 +1,11 @@
 import React, { useState, useLayoutEffect } from 'react';
-import PropTypes from 'prop-types';
 import twemoji from 'twemoji';
 
 import Toolbar from 'Toolbar/Toolbar';
 import EmojiGroups from './EmojiGroups/EmojiGroups';
 import EmojisFiltered from './EmojisFiltered/EmojisFiltered';
+
+import data from './emoji-data.json';
 
 import './EmojiPicker.scss';
 
@@ -17,7 +18,7 @@ const copyEmoji = (e) => {
 	document.body.removeChild(fakeTextarea);
 };
 
-const EmojiPicker = ({ data }) => {
+const EmojiPicker = () => {
 	const [searchValue, setSearchValue] = useState('');
 	const { version } = data;
 	let emojiPickerBody;
@@ -49,13 +50,6 @@ const EmojiPicker = ({ data }) => {
 			<div role="contentinfo" id="footer"><strong>{`Built with Unicode Emoji v${version}`}</strong></div>
 		</div>
 	);
-};
-
-EmojiPicker.propTypes = {
-	data: PropTypes.objectOf(PropTypes.oneOfType([
-		PropTypes.object,
-		PropTypes.string
-	])).isRequired
 };
 
 export default EmojiPicker;

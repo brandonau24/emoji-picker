@@ -5,6 +5,5 @@ import 'core-js/modules/es.string.includes';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import EmojiPicker from 'EmojiPicker';
-import data from './emoji-data.json';
 
-ReactDOM.render(<EmojiPicker data={data} />, document.body);
+ReactDOM.render(<EmojiPicker />, document.body);
