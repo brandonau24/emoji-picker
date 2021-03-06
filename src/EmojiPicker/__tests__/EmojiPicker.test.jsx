@@ -34,6 +34,8 @@ const data = {
 	}
 };
 
+jest.mock('../emoji-data.json', () => data);
+
 test('footer is rendered with Unicode version', () => {
 	render(<EmojiPicker data={data} />);
 
