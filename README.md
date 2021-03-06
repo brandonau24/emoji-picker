@@ -13,25 +13,3 @@ component allows the user to search for emojis by name. The component does have 
 ![GIF of emoji-picker](./emoji-picker.gif)
 
 The project uses [twemoji](https://github.com/twitter/twemoji) to render the emojis to keep the appearance consistent between platforms.
-
-## Data prop format
-You can use any set of emojis you want, but they have to be in the shape of the following:
-
-```
-{
-	"Group name": {
-		"subgroup-1": [
-			{
-				"name": emoji name,
-				"codepoints: emoji codepoints
-			}
-		]
-
-		// rest of subgroups...
-	},
-
-	// rest of groups...
-}
-```
-
-See [the test data file](./src/emoji-data.json) for a complete set. Feel free to take it or use [emoji-data-file-parser](https://github.com/brandonau24/emoji-data-file-parser) to generate one for your own.
