@@ -24,7 +24,12 @@ const EmojiGroup = ({ groupName, group, onClick }) => (
 
 EmojiGroup.propTypes = {
 	groupName: PropTypes.string.isRequired,
-	group: PropTypes.objectOf(PropTypes.array).isRequired,
+	group: PropTypes.objectOf(
+		PropTypes.arrayOf(PropTypes.shape({
+			name: PropTypes.string,
+			codepoints: PropTypes.string
+		}))
+	).isRequired,
 	onClick: PropTypes.func.isRequired
 };
 
