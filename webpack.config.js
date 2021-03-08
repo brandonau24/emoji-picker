@@ -8,7 +8,7 @@ const devMode = process.env.NODE_ENV === 'development';
 
 const buildPlugins = [
 	new MiniCssExtractPlugin({
-		filename: devMode ? 'styles.css' : 'styles.[contenthash].css'
+		filename: 'styles.css'
 	})
 ];
 
@@ -20,10 +20,14 @@ if (devMode) {
 	)
 }
 
+const libraryTarget = devMode ? undefined : 'commonjs2';
+const entry = devMode ? path.resolve(srcPath, 'index.dev.jsx') : path.resolve(srcPath, 'index.jsx');
+
 module.exports = {
-	entry: devMode ? path.resolve(srcPath, 'index.dev.jsx') : path.resolve(srcPath, 'index.jsx'),
+	entry,
 	output: {
-		filename: devMode ? 'emoji-picker.js' : 'emoji-picker.[contenthash].js',
+		filename: 'emoji-picker.js',
+		libraryTarget,
 		clean: true
 	},
 	module: {

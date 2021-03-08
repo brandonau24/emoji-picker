@@ -1,7 +1,7 @@
 {
   "name": "emoji-picker",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/emoji-picker.js",
   "author": "Brandon Au",
   "license": "GPL-3.0-or-later",
   "repository": "git@github.com:brandonau24/emoji-picker.git",
