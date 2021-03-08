@@ -6,4 +6,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import EmojiPicker from 'EmojiPicker';
 
+if (module.hot) {
+	module.hot.accept('EmojiPicker', () => {
+		ReactDOM.render(<EmojiPicker />, document.body);
+	});
+}
+
 ReactDOM.render(<EmojiPicker />, document.body);
