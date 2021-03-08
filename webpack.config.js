@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const srcPath = path.resolve(__dirname, 'src');
 
@@ -9,12 +8,9 @@ const devMode = process.env.NODE_ENV === 'development';
 
 const buildPlugins = [
 	new MiniCssExtractPlugin({
-		filename: devMode ? 'styles.[hash].css' : 'styles.[contenthash].css'
-	}),
-	new CleanWebpackPlugin()
+		filename: devMode ? 'styles.css' : 'styles.[contenthash].css'
+	})
 ];
-
-const postcssPlugins = ['autoprefixer', 'postcss-preset-env'];
 
 if (devMode) {
 	buildPlugins.push(
@@ -22,14 +18,13 @@ if (devMode) {
 			template: './template.html'
 		})
 	)
-
-	postcssPlugins.push('cssnano');
 }
 
 module.exports = {
 	entry: devMode ? path.resolve(srcPath, 'index.dev.jsx') : path.resolve(srcPath, 'index.jsx'),
 	output: {
-		filename: devMode ? 'emoji-picker.[hash].js' : 'emoji-picker.[contenthash].js'
+		filename: devMode ? 'emoji-picker.js' : 'emoji-picker.[contenthash].js',
+		clean: true
 	},
 	module: {
 		rules: [
@@ -49,16 +44,13 @@ module.exports = {
 				use: [
 					{
 						loader: MiniCssExtractPlugin.loader,
-						options: {
-							hmr: devMode
-						}
 					},
 					'css-loader',
 					{
 						loader: 'postcss-loader',
 						options: {
 							postcssOptions: {
-								plugins: postcssPlugins
+								plugins: ['autoprefixer', 'postcss-preset-env', 'cssnano']
 							}
 						}
 					},
@@ -67,14 +59,10 @@ module.exports = {
 			},
 			{
 				test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
-				use: [
-					{
-						loader: 'file-loader',
-						options: {
-							outputPath: 'assets'
-						}
-					}
-				]
+				type: 'asset/resource',
+				generator: {
+					filename: 'assets/[hash][ext][query]'
+				}
 			}
 		]
 	},
@@ -95,7 +83,7 @@ module.exports = {
 		open: true
 	},
 	plugins: buildPlugins,
-	devtool: devMode ? 'source-map' : 'none',
+	devtool: devMode ? 'source-map' : false,
 	externals: {
 		react: 'React'
 	}
