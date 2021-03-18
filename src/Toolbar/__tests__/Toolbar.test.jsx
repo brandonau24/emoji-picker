@@ -11,7 +11,7 @@ test('renders a SearchField as a child of the toolbar', () => {
 	const div = document.createElement('div');
 	div.id = 'emoji-picker';
 
-	render(<Toolbar onSearchFieldChangeCallback={jest.fn()} />, {
+	render(<Toolbar onSearchFieldChangeCallback={jest.fn()} searchValue="" />, {
 		container: document.body.appendChild(div)
 	});
 
@@ -22,7 +22,7 @@ test('renders a ColorThemeSwitch as a child of the toolbar', () => {
 	const div = document.createElement('div');
 	div.id = 'emoji-picker';
 
-	render(<Toolbar onSearchFieldChangeCallback={jest.fn()} />, {
+	render(<Toolbar onSearchFieldChangeCallback={jest.fn()} searchValue="" />, {
 		container: document.body.appendChild(div)
 	});
 

@@ -45,7 +45,7 @@ const EmojiPicker = () => {
 
 	return (
 		<div id="emoji-picker">
-			<Toolbar onSearchFieldChangeCallback={setSearchValue} />
+			<Toolbar onSearchFieldChangeCallback={setSearchValue} searchValue={searchValue} />
 			{emojiPickerBody}
 			<div role="contentinfo" id="footer"><strong>{`Built with Unicode Emoji v${version}`}</strong></div>
 		</div>

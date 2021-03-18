@@ -69,3 +69,21 @@ test('twemoji parses DOM on state updates', () => {
 
 	expect(twemoji.parse).toBeCalled();
 });
+
+test('changes value of search field on every keystroke', () => {
+	render(<EmojiPicker data={data} />);
+
+	const searchField = screen.getByRole('textbox');
+
+	userEvent.type(searchField, 'a');
+	expect(searchField).toHaveValue('a');
+
+	userEvent.type(searchField, 'b');
+	expect(searchField).toHaveValue('ab');
+
+	userEvent.type(searchField, '{space}');
+	expect(searchField).toHaveValue('ab ');
+
+	userEvent.type(searchField, '{selectall}{backspace}');
+	expect(searchField).toHaveValue('');
+});

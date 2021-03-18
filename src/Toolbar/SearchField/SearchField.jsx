@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from 'Icon';
 
 import './SearchField.scss';
 
-const SearchField = ({ onChangeCallback }) => {
-	const [searchValue, setSearchValue] = useState('');
-
-	useEffect(() => {
-		onChangeCallback(searchValue);
-	});
-
-	const onSearchFieldChange = (event) => setSearchValue(event.target.value);
+const SearchField = ({ onChangeCallback, searchValue }) => {
+	const onSearchFieldChange = (event) => onChangeCallback(event.target.value);
 
 	return (
 		<div className="search-field">
@@ -22,7 +16,8 @@ const SearchField = ({ onChangeCallback }) => {
 };
 
 SearchField.propTypes = {
-	onChangeCallback: PropTypes.func.isRequired
+	onChangeCallback: PropTypes.func.isRequired,
+	searchValue: PropTypes.string.isRequired
 };
 
 export default SearchField;
